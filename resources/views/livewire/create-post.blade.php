@@ -23,8 +23,8 @@
             <x-secondary-button wire:click="$set('open', false)">
                 Cancelar
             </x-secondary-button>
-            <x-danger-button wire:click="save" wire:loading.class="bg-blue-500" wire:target="save"> 
-                <!-- wire:loading.class añade un estilo, en este caso solo cuando se ejecute el método save--> 
+            <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save" class="disabled:opacity-25"> 
+                <!-- wire:loading.attr cambia el atributo, en este caso deshabilita el botón hasta que se complete el fomulario--> 
                 Crear
             </x-danger-button>
         </x-slot>
