@@ -79,7 +79,7 @@
                         <td class="px-6 py-4">
                             {{ $post->content }}
                         </td>
-                        <td class="px-6 py-4 text-right text-sm font-medium">
+                        <td class="px-6 py-4">
                             @livewire('edit-post', ['post' => $post], key($post->id))
                         </td>
                     </tr>
