@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-9">
         <div class="max-w-7xl mx-auto">
             @livewire('show-posts')
         </div>
