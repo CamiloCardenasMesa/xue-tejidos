@@ -4,16 +4,21 @@ namespace App\Http\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreatePost extends Component
 {
+    use WithFileUploads;
+
     public $open = false;
     public $title;
     public $content;
+    public $image;
 
     protected $rules = [
         'title' => 'required|max:10',
-        'content' => 'required|min:30',
+        'content' => 'required|min:10',
+        'image' => 'required|image:2048',
     ];
 
     public function render()
@@ -25,9 +30,12 @@ class CreatePost extends Component
     {
         $this->validate();
 
+        $image = $this->image->store('posts');
+
         Post::create([
             'title' => $this->title,
             'content' => $this->content,
+            'image' => $image,
         ]);
 
         $this->resetForm();
@@ -45,5 +53,6 @@ class CreatePost extends Component
         $this->open = false;
         $this->title = '';
         $this->content = '';
+        $this->image = '';
     }
 }

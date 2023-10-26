@@ -80,7 +80,7 @@
                             {{ $post->content }}
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">
-                            <a href="#" class="text-indigo-600 hover:bg-indigo-300 p-3 rounded-md">Edit</a>
+                            @livewire('edit-post', ['post' => $post], key($post->id))
                         </td>
                     </tr>
                 @endforeach
