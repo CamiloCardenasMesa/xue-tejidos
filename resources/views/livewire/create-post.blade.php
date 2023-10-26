@@ -23,13 +23,10 @@
             <x-secondary-button wire:click="$set('open', false)">
                 Cancelar
             </x-secondary-button>
-            <x-danger-button wire:click="save" wire:loading.remove wire:target="save"> 
-                <!-- wire:loading.remove hace que se oculte este botón pero solo cuando se ejecute el método save--> 
+            <x-danger-button wire:click="save" wire:loading.class="bg-blue-500" wire:target="save"> 
+                <!-- wire:loading.class añade un estilo, en este caso solo cuando se ejecute el método save--> 
                 Crear
             </x-danger-button>
-            <span class="ml-3" wire:loading wire:target="save">Cargando...</span>
-            <!-- wire:loading muestra el texto "cargando..." mientras la petición es recibida del servidor -->
-            <!-- wiretarget="save" hace que se muestre el mensaje cuando se ejectute el método save -->
         </x-slot>
     </x-dialog-modal>
 </div>
