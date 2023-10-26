@@ -11,6 +11,11 @@ class CreatePost extends Component
     public $title;
     public $content;
 
+    protected $rules = [
+        'title' => 'required|max:10',
+        'content' => 'required|min:30',
+    ];
+
     public function render()
     {
         return view('livewire.create-post');
@@ -18,10 +23,7 @@ class CreatePost extends Component
 
     public function save()
     {
-        $this->validate([
-            'title' => 'required|max:10',
-            'content' => 'required|min:30',
-        ]);
+        $this->validate();
 
         Post::create([
             'title' => $this->title,
@@ -29,14 +31,14 @@ class CreatePost extends Component
         ]);
 
         $this->resetForm();
-        $this->emitTo('show-posts', 'showInTable'); // usando emitTo logro que solo sea el componente showPosts el que escuche el evento
+        $this->emitTo('show-posts', 'render'); // usando emitTo logro que solo sea el componente showPosts el que escuche el evento
         $this->emit('alert', 'Se ha creado el post');
     }
 
-    // public function updated($propertyName)
-    // {
-    //     $this->validateOnly($propertyName);
-    // }
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
     private function resetForm()
     {
