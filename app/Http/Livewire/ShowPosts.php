@@ -10,7 +10,7 @@ class ShowPosts extends Component
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
-    protected $listeners = ['render' => 'render'];
+    protected $listeners = ['showInTable' => 'render']; // la clave se refiere al evento que se ha emitido desde createPost y el valor es método que quiero que se ejecute, en este caso el método render. Si el envento se llama igual que el método ['render' => 'render'] simplemente pordría dejar ['render']
 
     public function render()
     {

@@ -10,13 +10,13 @@
         <x-slot name="content">
             <div class="mb-4">
                 <x-label value="título del post"/>
-                <x-input wire:model.defer="title" type="text" class="w-full"/>
-                {{ $title }}
+                <x-input wire:model.defer="title" type="text" class="w-full"/> 
+                <x-input-error for="title" />
             </div>
             <div class="mb-4">
                 <x-label value="Contenido del post"/>
-                <x-input wire:model.defer="content" type="text" class="w-full"/>
-                {{ $content }}
+                <x-input wire:model.defer="content" type="text" class="w-full"/> <!-- el defer evita que se actualice la variable content mientras el usuario escribe-->
+                <x-input-error for="content" />
             </div>
         </x-slot>
         <x-slot name="footer">

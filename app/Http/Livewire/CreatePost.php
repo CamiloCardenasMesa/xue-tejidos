@@ -18,13 +18,30 @@ class CreatePost extends Component
 
     public function save()
     {
+        $this->validate([
+            'title' => 'required|max:10',
+            'content' => 'required|min:30',
+        ]);
+
         Post::create([
             'title' => $this->title,
             'content' => $this->content,
         ]);
 
-        $this->reset(['open', 'title', 'content']);
+        $this->resetForm();
+        $this->emitTo('show-posts', 'showInTable'); // usando emitTo logro que solo sea el componente showPosts el que escuche el evento
+        $this->emit('alert', 'Se ha creado el post');
+    }
 
-        $this->emit('render');
+    // public function updated($propertyName)
+    // {
+    //     $this->validateOnly($propertyName);
+    // }
+
+    private function resetForm()
+    {
+        $this->open = false;
+        $this->title = '';
+        $this->content = '';
     }
 }
