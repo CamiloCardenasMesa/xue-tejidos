@@ -39,6 +39,7 @@ class ShowPosts extends Component
         }
     }
 
+   // este método pertenece a los hooks de livewire. En este caso para resetear la página 
     public function updatingSearch()
     {
         $this->resetPage();
