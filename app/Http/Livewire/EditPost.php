@@ -31,7 +31,7 @@ class EditPost extends Component
 
         if ($this->image) {
             Storage::delete([$this->post->image]);
-            $this->post->image = $this->image->store('posts');
+            $this->post->image = $this->image->store('public/posts');
         }
 
         $this->post->save();
