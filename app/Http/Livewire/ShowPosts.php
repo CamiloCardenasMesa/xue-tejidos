@@ -4,9 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowPosts extends Component
 {
+    use WithPagination;
+
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
@@ -17,7 +20,7 @@ class ShowPosts extends Component
         $posts = Post::where('title', 'like', '%'.$this->search.'%')
                     ->orWhere('content', 'like', '%'.$this->search.'%')
                     ->orderBy($this->sort, $this->direction)
-                    ->get();
+                    ->paginate(5);
 
         return view('livewire.show-posts', compact('posts'));
     }
@@ -34,5 +37,10 @@ class ShowPosts extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }
