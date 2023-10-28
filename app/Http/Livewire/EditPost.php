@@ -37,7 +37,7 @@ class EditPost extends Component
         $this->post->save();
 
         $this->resetForm();
-        $this->emitTo('show-posts', 'render');
+        $this->emitTo('posts-list', 'render');
         $this->emit('alert', 'El post se ha actualizado con éxito');
     }
 

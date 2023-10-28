@@ -39,7 +39,7 @@ class CreatePost extends Component
         ]);
 
         $this->resetForm();
-        $this->emitTo('show-posts', 'render'); // usando emitTo logro que solo sea el componente showPosts el que escuche el evento
+        $this->emitTo('posts-list', 'render'); // usando emitTo logro que solo sea el componente PostsList el que escuche el evento
         $this->emit('alert', 'Se ha creado el post');
     }
 

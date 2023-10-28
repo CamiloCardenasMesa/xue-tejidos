@@ -7,7 +7,7 @@
 
     <div class="py-9">
         <div class="max-w-7xl mx-auto">
-            @livewire('show-posts')
+            @livewire('posts-list')
         </div>
     </div>
 </x-app-layout>

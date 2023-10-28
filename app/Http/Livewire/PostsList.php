@@ -6,7 +6,7 @@ use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ShowPosts extends Component
+class PostsList extends Component
 {
     use WithPagination;
 
@@ -22,10 +22,10 @@ class ShowPosts extends Component
                     ->orderBy($this->sort, $this->direction)
                     ->paginate(5);
 
-        return view('livewire.show-posts', compact('posts'));
+        return view('livewire.posts-list', compact('posts'));
     }
 
-    public function order($sort)
+    public function orderList($sort)
     {
         if ($this->sort === $sort) {
             if ($this->direction === 'desc') {
@@ -39,7 +39,7 @@ class ShowPosts extends Component
         }
     }
 
-   // este método pertenece a los hooks de livewire. En este caso para resetear la página 
+    // este método pertenece a los hooks de livewire. En este caso para resetear la página
     public function updatingSearch()
     {
         $this->resetPage();
