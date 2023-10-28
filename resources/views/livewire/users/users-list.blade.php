@@ -56,10 +56,7 @@
                     @foreach ($users as $user)
                         <tr>
                             <td class="px-6 py-4">
-                                {{-- <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="imagen del usuario"> --}}
-
-                                {{-- {{ $user->profile_photo_path }} --}}
-                                {{-- <img class="rounded-full h-16 w-16" src="{{ asset('storage/profile-photos' . $user->profile_photo-) }}" alt="image"> --}}
+                                <img class="w-8 h-8 rounded-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
                             </td>
                             <td class="px-6 py-4">
                                 {{ $user->name }}
