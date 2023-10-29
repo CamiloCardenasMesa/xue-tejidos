@@ -2,7 +2,7 @@
     <x-table>
         <div class="flex items-center justify-between gap-3 px-6 py-6">
             <x-input class="flex-1 gap-3" type="text" wire:model="search" placeholder="busca un usuario" />
-            @livewire('create-user')
+            @livewire('users.create-user')
         </div>
         @if ($users->count())
             <table class="min-w-full divide-y divide-gray-200">
