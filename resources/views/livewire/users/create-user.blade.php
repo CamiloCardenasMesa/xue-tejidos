@@ -31,6 +31,11 @@
                 <x-input wire:model="password" type="password" class="w-full" />
                 <x-input-error for="password" />
             </div>
+            <div class="mb-4">
+                <x-label value="Confirmar contraseña" />
+                <x-input wire:model="confirmPassword" type="password" class="w-full" />
+                <x-input-error for="confirmPassword" />
+            </div>
             <div>
                 <input type="file" wire:model="image" />
                 <x-input-error for="image" />

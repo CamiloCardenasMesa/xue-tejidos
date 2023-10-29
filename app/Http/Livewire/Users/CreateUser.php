@@ -14,13 +14,14 @@ class CreateUser extends Component
     public $name;
     public $email;
     public $password;
+    public $confirmPassword;
     public $image;
 
     protected $rules = [
         'name' => 'required|min:5',
         'email' => 'required|email|unique:users,email',
-        'password' => 'required',
-        'image' => 'image:2048',
+        'password' => 'required|same:confirmPassword',
+        'image' => 'image:2048|nullable',
     ];
 
     public function render()
@@ -32,17 +33,14 @@ class CreateUser extends Component
     {
         $this->validate();
 
-        $image = $this->image->store('users');
-
         User::create([
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
-            'image' => $image,
         ]);
 
         $this->resetForm();
-        $this->emitTo('users-list', 'render');
+        $this->emitTo('users.users-list', 'render');
         $this->emit('alert', 'Se ha creado el usuario');
     }
 
@@ -53,10 +51,13 @@ class CreateUser extends Component
 
     private function resetForm()
     {
-        $this->open = false;
-        $this->name = '';
-        $this->email = '';
-        $this->password = '';
-        $this->image = '';
+        $this->reset([
+            'open',
+            'name',
+            'email',
+            'password',
+            'confirmPassword',
+            'image',
+        ]);
     }
 }

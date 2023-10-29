@@ -15,11 +15,11 @@ class UsersList extends Component
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
-    protected $listeners = ['render']; 
+    protected $listeners = ['render'];
     public $image;
 
     protected $rules = [
-        'image' => 'required|image:2048',
+        'image' => 'image:2048',
     ];
 
     public function render()
