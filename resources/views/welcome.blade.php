@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    @livewire('articles')
+
     <div class="flex">
         <img class="w-full" src="{{ asset('storage/posts/portada.jpg') }}" alt="" >
     </div>

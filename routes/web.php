@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Articles;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', Articles::class)->name('welcome');
 
 Route::middleware([
     'auth:sanctum',
@@ -29,6 +28,4 @@ Route::middleware([
     Route::get('/users', function () {
         return view('users');
     })->name('users');
-
-
 });
