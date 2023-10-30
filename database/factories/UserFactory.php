@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
-            'profile_photo_path' => 'posts/'.$this->faker->image('public/storage/posts', 640, 480, null, false),
+            'profile_photo_path' => 'profile-photos/'.$this->faker->image('public/storage/profile-photos', 640, 480, null, false),
             'current_team_id' => null,
         ];
     }

@@ -10,7 +10,6 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'image' => 'posts/'.$this->faker->image('public/storage/posts', 640, 480, null, false),
         ];
     }
 }

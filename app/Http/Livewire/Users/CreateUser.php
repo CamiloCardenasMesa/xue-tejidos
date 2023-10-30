@@ -32,11 +32,13 @@ class CreateUser extends Component
     public function save()
     {
         $this->validate();
+        $image = $this->image->store('public/profile-photos');
 
         User::create([
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
+            'profile_photo_path' => $image,
         ]);
 
         $this->resetForm();

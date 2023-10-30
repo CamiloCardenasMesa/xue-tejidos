@@ -30,7 +30,7 @@ class CreatePost extends Component
     {
         $this->validate();
 
-        $image = $this->image->store('posts');
+        $image = $this->image->store('public/posts');
 
         Post::create([
             'title' => $this->title,
