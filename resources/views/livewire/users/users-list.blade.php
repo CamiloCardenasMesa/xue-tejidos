@@ -58,9 +58,9 @@
                         <tr>
                             <td class="px-6 py-4">
                                 @if($user->profile_photo_path)
-                                    <img class="w-8 h-8 rounded-full" src="{{ Storage::url($user->profile_photo_path) }}" alt="{{ 'image of ' . $user->name }}">
+                                    <img class="w-10 h-10 object-cover rounded-full" src="{{ Storage::url($user->profile_photo_path) }}" alt="{{ 'image of ' . $user->name }}">
                                 @else
-                                    <img class="w-8 h-8 rounded-full" src="{{ $user->profile_photo_url }}" alt="{{ 'image of ' . $user->name }}">
+                                    <img class="w-10 h-10 object-cover rounded-full" src="{{ $user->profile_photo_url }}" alt="{{ 'image of ' . $user->name }}">
                                 @endif
                             </td>
                             <td class="px-6 py-4">
