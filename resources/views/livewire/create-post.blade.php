@@ -21,9 +21,9 @@
                 <x-input wire:model="title" type="text" class="w-full" />
                 <x-input-error for="title" />
             </div>
-            <div class="mb-4">
+            <div class="mb-4" wire:ignore> <!--wire:ignore evita que cuando cambie cuando se vuelva a renderizar la página -->
                 <x-label value="Contenido del post" />
-                <x-input wire:model="content" type="text" class="w-full" />
+                <textarea wire:model="content" class="w-full" id="editor" rows="6"></textarea>
                 <x-input-error for="content" />
             </div>
             <div>
@@ -41,4 +41,20 @@
             </x-danger-button>
         </x-slot>
     </x-dialog-modal>
+    @push('js')
+        <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script> 
+
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .then(function(editor){
+                    editor.model.document.on('change:data', () => {
+                        @this.set('content', editor.getData());
+                    })
+                })
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>   
+    @endpush
 </div>
