@@ -57,7 +57,7 @@
                     @foreach ($users as $user)
                         <tr>
                             <td class="px-6 py-4">
-                                <img class="w-8 h-8 rounded-full" src="{{ $user->profile_photo_url }}" alt="{{ 'image of ' . $user->name }}">
+                                <img class="w-8 h-8 rounded-full" src="{{ Storage::url($user->profile_photo_path) }}" alt="{{ 'image of ' . $user->name }}">
                             </td>
                             <td class="px-6 py-4">
                                 {{ $user->name }}
