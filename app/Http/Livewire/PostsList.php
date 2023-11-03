@@ -4,15 +4,18 @@ namespace App\Http\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class PostsList extends Component
 {
     use WithPagination;
+    use WithFileUploads;
 
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
+    public $image;
     protected $listeners = ['render']; // la clave se refiere al evento que se ha emitido desde createPost y el valor es método que quiero que se ejecute, en este caso el método render. Si el envento se llama igual que el método ['render' => 'render'] simplemente pordría dejar ['render']
 
     public function render()

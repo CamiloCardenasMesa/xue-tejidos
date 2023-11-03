@@ -35,6 +35,13 @@
                             @endif
                         </div>
                     </th>
+
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <h3 class="pr-6">
+                                Image
+                            </h3>
                     <th wire:click="orderList('title')" scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
                         <div class="flex items-center justify-between">
@@ -96,6 +103,9 @@
                     <tr>
                         <td class="px-6 py-4">
                             {{ $post->id }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $post->image }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $post->title }}
