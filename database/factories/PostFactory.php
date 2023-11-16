@@ -10,12 +10,12 @@ class PostFactory extends Factory
 {
     public function definition(): array
     {
-        $profileImage = storage_path('app/public/images/post_image.jpg');
+        $postImage = storage_path('app/public/images/post_image.jpg');
 
         return [
             'title' => $this->faker->sentence(),
             'content' => $this->faker->text(),
-            'image' => $profileImage ? Storage::disk('public')->putFile('posts', new File($profileImage)) : null,
+            'image' => $postImage ? Storage::disk('public')->putFile('posts', new File($postImage)) : null,
         ];
     }
 }

@@ -10,7 +10,7 @@ class ProductFactory extends Factory
 {
     public function definition(): array
     {
-        $profileImage = storage_path('app/public/images/product_image.png');
+        $productImage = storage_path('app/public/images/product_image.png');
 
         return [
             'name' => $this->faker->sentence(3, true),
@@ -19,7 +19,7 @@ class ProductFactory extends Factory
             'stock' => $this->faker->numberBetween(2, 10),
             'enable' => true,
             'category_id' => $this->faker->numberBetween(1, 3),
-            'image' => $profileImage ? Storage::disk('public')->putFile('products', new File($profileImage)) : null,
+            'image' => $productImage ? Storage::disk('public')->putFile('products', new File($productImage)) : null,
         ];
     }
 }
