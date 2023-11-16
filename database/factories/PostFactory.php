@@ -3,22 +3,19 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
- */
 class PostFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
+    public function definition(): array
     {
+        $postImage = storage_path('app/public/images/post_image.jpg');
+
         return [
             'title' => $this->faker->sentence(),
             'content' => $this->faker->text(),
+            'image' => $postImage ? Storage::disk('public')->putFile('posts', new File($postImage)) : null,
         ];
     }
 }

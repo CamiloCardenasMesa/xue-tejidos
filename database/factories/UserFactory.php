@@ -5,6 +5,8 @@ namespace Database\Factories;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
@@ -24,6 +26,8 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $profileImage = storage_path('app/public/images/profile_image.jpg');
+
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
@@ -32,7 +36,7 @@ class UserFactory extends Factory
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
-            'profile_photo_path' => null,
+            'profile_photo_path' => $profileImage ? Storage::disk('public')->putFile('profile-photos', new File($profileImage)) : null,
             'current_team_id' => null,
         ];
     }
@@ -54,7 +58,7 @@ class UserFactory extends Factory
      */
     public function withPersonalTeam(): static
     {
-        if (! Features::hasTeamFeatures()) {
+        if (!Features::hasTeamFeatures()) {
             return $this->state([]);
         }
 
