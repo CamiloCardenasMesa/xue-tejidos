@@ -29,4 +29,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/design', function () {
         return view('admin.design');
     })->name('design');
+
+    Route::get('/forum', \App\Http\Livewire\ShowThreads::class )->name('forum');
 });

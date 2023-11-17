@@ -26,8 +26,12 @@
                         Design
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('forum') }}" :active="request()->routeIs('forum')">
+                        Forum
+                    </x-nav-link>
+                </div>
             </div>
-
             <div class="hidden sm:flex sm:items-center">
                 <!-- Teams Dropdown -->
                 @auth
