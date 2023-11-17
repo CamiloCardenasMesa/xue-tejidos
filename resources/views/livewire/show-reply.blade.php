@@ -8,7 +8,20 @@
                 <p class="text-blue-600 mb-2 font-semibold text-xs">
                     {{ $reply->user->name }}
                 </p>
-                <p class="text-white/60 text-xs">{{ $reply->body }}</p>
+
+                @if ($isEditing)
+                    <form wire:submit.prevent="updateReply" class="mt-4">
+                        <input 
+                            type="text" 
+                            placeholder="Escribe una respuesta" 
+                            class="bg-slate-800 border-1 border-slate-900 rounded-md w-full p-3 text-white/60 text-xs"
+                            wire:model.defer="body"
+                        >
+                    </form>
+                @else
+                    <p class="text-white/60 text-xs">{{ $reply->body }}</p>
+                @endif
+
 
                 @if ($isCreating)
                     <form wire:submit.prevent="postChild" class="mt-4">
@@ -25,7 +38,7 @@
                     @if (is_null($reply->reply_id))
                         <a href="#" wire:click.prevent="$toggle('isCreating')" class="hover:text-white">Responder</a>
                     @endif
-                    <a href="" class="hover:text-white">Editar</a>
+                    <a href="#" wire:click.prevent="$toggle('isEditing')" class="hover:text-white">Editar</a>
                 </p>
             </div>
         </div>
