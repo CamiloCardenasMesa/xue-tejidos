@@ -1,7 +1,3 @@
 <x-app-layout>
-    <div class="py-9">
-        <div class="max-w-7xl mx-auto">
-            @livewire('users.users-list')
-        </div>
-    </div>
+    @livewire('users.users-list')
 </x-app-layout>
