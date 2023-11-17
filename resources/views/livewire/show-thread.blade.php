@@ -16,7 +16,7 @@
                         {{ $thread->forumCategory->name }}
                     </span>
                 </h2>
-                <p class="text-blue-600 font-semibold w-full text-xs">
+                <p class="text-blue-600 mb-4 font-semibold text-xs">
                     {{ $thread->user->name }}
                     <span class="text-white/90">{{ $thread->created_at->diffForHumans() }}</span>
                 </p>
@@ -27,6 +27,10 @@
         </div>
     </div>
     {{-- respuestas --}}
+    @foreach ( $replies as $reply )
+        @livewire('show-reply', ['reply' => $reply], key('reply-'. $reply->id))
+    @endforeach
+
     {{-- formulario de creación de respuestas --}}
     <form wire:submit.prevent="postReply">
         <input 
