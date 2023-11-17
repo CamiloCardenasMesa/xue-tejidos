@@ -64,4 +64,9 @@ class User extends Authenticatable
         $user = new User();
         return $user->profile_photo_url;
     }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }
