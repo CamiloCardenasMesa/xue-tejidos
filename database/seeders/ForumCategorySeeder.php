@@ -9,6 +9,8 @@ class ForumCategorySeeder extends Seeder
 {
     public function run(): void
     {
-        ForumCategory::factory(10)->create();
+        ForumCategory::factory(10)
+            ->hasThreads(20)
+            ->create();
     }
 }
