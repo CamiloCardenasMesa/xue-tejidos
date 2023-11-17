@@ -61,6 +61,7 @@ class User extends Authenticatable
 
     public function avatar()
     {
-        return 'https://gravatar.com/avatar' . md5($this->email) . '?s=50';
+        $user = new User();
+        return $user->profile_photo_url;
     }
 }

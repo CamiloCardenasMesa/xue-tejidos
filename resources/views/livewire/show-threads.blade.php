@@ -37,7 +37,7 @@
                     </div>
                     <div class="w-full">
                         <h2 class="flex mb-4 items-start justify-between">
-                            <a href="" class="text-xl font-semibold text-white/90">
+                            <a href="{{ route('thread', $thread ) }}" class="text-xl font-semibold text-white/90">
                                 {{ $thread->title }}
                             </a>
                             <span 
