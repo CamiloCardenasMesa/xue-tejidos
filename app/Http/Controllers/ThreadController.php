@@ -15,6 +15,26 @@ class ThreadController extends Controller
         return view('thread.edit', compact('forumCategories', 'thread'));
     }
 
+    public function create(Thread $thread)
+    {
+        $forumCategories = ForumCategory::get();
+
+        return view('thread.create', compact('forumCategories', 'thread'));
+    }
+
+    public function store(Request $request, Thread $thread)
+    {
+        $request->validate([
+            'forum_category_id' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        auth()->user()->threads()->create($request->all());
+
+        return redirect()->route('forum');
+    }
+
     public function update(Request $request, Thread $thread)
     {
         $request->validate([
@@ -27,4 +47,5 @@ class ThreadController extends Controller
 
         return redirect()->route('thread', $thread);
     }
+
 }
