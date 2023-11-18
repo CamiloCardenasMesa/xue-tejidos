@@ -8,7 +8,7 @@
         @foreach ( $forumCategories as $forumCategory )
             <option 
                 value="{{ $forumCategory->id }}"
-                @if ($thread->forum_category_id == $forumCategory->id)
+                @if ( old('forum_category_id', $thread->forum_category_id) == $forumCategory->id)
                     selected
                 @endif
             >
@@ -21,7 +21,7 @@
         name="title" 
         placeholder="título"
         class="bg-slate-800 border-1 rounded-md w-full p-3 text-white/60 text-xs mb-4"
-        value="{{ $thread->title }}"
+        value="{{ old('title', $thread->title) }}"
     >
 
     <textarea 
@@ -29,5 +29,5 @@
         rows="10"
         placeholder="Descripción del problema"
         class="bg-slate-800 border-1 rounded-md w-full p-3 text-white/60 text-xs mb-4"
-    >{{ $thread->body }}</textarea>
+    >{{ old('body', $thread->body ) }}</textarea>
 </div>

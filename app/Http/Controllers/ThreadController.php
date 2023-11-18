@@ -14,4 +14,17 @@ class ThreadController extends Controller
 
         return view('thread.edit', compact('forumCategories', 'thread'));
     }
+
+    public function update(Request $request, Thread $thread)
+    {
+        $request->validate([
+            'forum_category_id' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $thread->update($request->all());
+
+        return redirect()->route('thread', $thread);
+    }
 }
