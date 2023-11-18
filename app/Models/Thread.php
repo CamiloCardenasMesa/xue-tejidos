@@ -11,7 +11,7 @@ class Thread extends Model
     use HasFactory;
 
     protected $fillable = [
-        'forum_category_id  ',
+        'forum_category_id',
         'title',
         'body',
     ];
