@@ -10,6 +10,8 @@ class ThreadController extends Controller
 {
     public function edit(Thread $thread)
     {
+        $this->authorize('update', $thread);
+        
         $forumCategories = ForumCategory::get();
 
         return view('thread.edit', compact('forumCategories', 'thread'));
@@ -37,6 +39,8 @@ class ThreadController extends Controller
 
     public function update(Request $request, Thread $thread)
     {
+        $this->authorize('update', $thread);
+
         $request->validate([
             'forum_category_id' => 'required',
             'title' => 'required',

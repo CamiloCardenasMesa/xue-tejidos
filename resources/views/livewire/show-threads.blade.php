@@ -60,8 +60,10 @@
                                   
                                 {{ $thread->replies_count }}
                                 Respuesta{{ $thread->replies_count !== 1 ? 's' : ''  }}
+                                @can('update', $thread)
                                 |
-                                <a href="{{ route('threads.edit', $thread) }}" class="hover:text-white">Editar</a>
+                                    <a href="{{ route('threads.edit', $thread) }}" class="hover:text-white">Editar</a>
+                                @endcan
                             </span>
                         </p>
                     </div>
