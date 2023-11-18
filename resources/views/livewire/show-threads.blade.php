@@ -29,6 +29,7 @@
                 wire:model="search"
             >
         </form>
+
         @foreach ( $threads as $thread)
             <div class="rounded-md bg-gradient-to-r from-slate-800 to-slate-900 hover:to-slate-800 mb-4">
                 <div class="p-4 flex gap-4">
@@ -60,7 +61,7 @@
                                 {{ $thread->replies_count }}
                                 Respuesta{{ $thread->replies_count !== 1 ? 's' : ''  }}
                                 |
-                                <a href="" class="hover:text-white">Editar</a>
+                                <a href="{{ route('threads.edit', $thread) }}" class="hover:text-white">Editar</a>
                             </span>
                         </p>
                     </div>
