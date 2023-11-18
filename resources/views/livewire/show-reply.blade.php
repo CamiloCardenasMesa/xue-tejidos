@@ -38,7 +38,10 @@
                     @if (is_null($reply->reply_id))
                         <a href="#" wire:click.prevent="$toggle('isCreating')" class="hover:text-white">Responder</a>
                     @endif
-                    <a href="#" wire:click.prevent="$toggle('isEditing')" class="hover:text-white">Editar</a>
+
+                    @can('update', $reply)
+                        <a href="#" wire:click.prevent="$toggle('isEditing')" class="hover:text-white">Editar</a>
+                    @endcan
                 </p>
             </div>
         </div>
