@@ -1,66 +1,80 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# About
 
-## About Laravel
+Xue Tejidos is an online store in development built using the TALL Stack (Tailwind CSS, Alpine, Laravel and Liverwire).
+It includes the following features:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Product and category management.
+- User administration with their roles and permissions.
+- Forum panel
+- Post section.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirements
+- PHP: ^8.0.2 `required`
+- MYSQL 5.7+ `required`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## If you want to see the progress you can follow the steps below
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Clone the repository:
+```bash
+$ git clone https://github.com/CamiloCardenasMesa/xue-tejidos.git
+```
+- Enter the repository folder:
+```bash
+$ cd xue-tejidos
+```
+- If you want to access the entire development history, use the command:
+```bash
+$ git fetch --all
+```
+- Install PHP dependencies through the [composer](https://getcomposer.org/download/) package manager:
+```bash
+$ composer install
+```
+- Install NodeJS dependencies using the [npm](https://nodejs.org/es/) package manager:
+```bash
+$ npm install
+```
+## Configuration
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Copy the .env.example file to .env and env.testing, and then add each environment variable:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`DB_USERNAME` Database username.  
+`DB_PASSWORD` Database Password.  
+`MAIL_USERNAME` Mailtrap username for testing.  
+`MAIL_PASSWORD` Mailtrap password for testing.  
+`MAIL_FROM_ADDRESS` System Email.  
 
-## Laravel Sponsors
+- Generate the application key:
+```bash
+$ php artisan key:generate
+```
+- Migrate and seed the database:
+```bash
+$ php artisan migrate --seed
+```
+- Create the connection between the public and storage directories:
+```bash
+$ php artisan storage:link
+```
+- Start the Laravel development server:
+```bash
+$ php artisan serve
+```
+- Open another terminal and navigate to your project directory. Then, run:
+```bash
+$ npm run dev
+```
+## Finally,  register and log in. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Contributions
 
-### Premium Partners
+You can make your contributions through pull requests. For significant changes, please create an ISSUE first.  
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Make sure to update the tests accordingly.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**XueTejidos**  is a project under the MIT license. [MIT license](https://opensource.org/licenses/MIT).
