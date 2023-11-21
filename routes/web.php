@@ -32,6 +32,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     })->name('design');
 
     Route::get('/forum', \App\Http\Livewire\ShowThreads::class )->name('forum');
+    
     Route::get('/thread/{thread}', \App\Http\Livewire\ShowThread::class )->name('thread');
 
     Route::resource('threads', ThreadController::class)->except([

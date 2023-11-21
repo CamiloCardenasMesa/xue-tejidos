@@ -61,8 +61,7 @@ class User extends Authenticatable
 
     public function avatar()
     {
-        $user = new User();
-        return $user->profile_photo_url;
+        return $this->profile_photo_url;
     }
 
     public function replies()

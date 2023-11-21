@@ -1,11 +1,11 @@
 <div>
-    <div class="rounded-md bg-gradient-to-r from-slate-800 to-slate-900 hover:to-slate-800 mb-4">
-        <div class="p-4 flex gap-4">
-            <div>
-                <img src="{{ $reply->user->avatar() }}" alt="{{ $reply->user->name }}" class="rounded-md object-cover">
+    <div class="rounded-md border border-gray-300 bg-gray-200 hover:bg-gradient-to-b hover:from-gray-300 hover:to-gray-200 mb-4">
+        <div class="flex p-4 gap-4">
+            <div class="flex h-20 w-20 items-center justify-center">
+                <img src="{{ $reply->user->avatar() }}" alt="{{ $reply->user->name }}" class="rounded-full object-cover">
             </div>
             <div class="w-full">
-                <p class="text-blue-600 mb-2 font-semibold text-xs">
+                <p class="text-cyan-500 mb-2 font-semibold text-xs">
                     {{ $reply->user->name }}
                 </p>
 
@@ -14,12 +14,12 @@
                         <input 
                             type="text" 
                             placeholder="Escribe una respuesta" 
-                            class="bg-slate-800 border-1 border-slate-900 rounded-md w-full p-3 text-white/60 text-xs"
+                            class="bg-gray-200 border border-gray-300 rounded-md w-full p-3 text-slate/60 text-xs"
                             wire:model.defer="body"
                         >
                     </form>
                 @else
-                    <p class="text-white/60 text-xs">{{ $reply->body }}</p>
+                    <p class="text-slate/60 text-xs">{{ $reply->body }}</p>
                 @endif
 
 
@@ -28,19 +28,19 @@
                         <input 
                             type="text" 
                             placeholder="Escribe una respuesta" 
-                            class="bg-slate-800 border-1 border-slate-900 rounded-md w-full p-3 text-white/60 text-xs"
+                            class="bg-gray-200 border border-gray-300 rounded-md w-full p-3 text-slate/60 text-xs"
                             wire:model.defer="body"
                         >
                     </form>
                 @endif
 
-                <p class="mt-4 text-white/60 text-xs flex gap-2 justify-end">
+                <p class="mt-4 text-gray-500 text-xs flex gap-2 justify-end">
                     @if (is_null($reply->reply_id))
-                        <a href="#" wire:click.prevent="$toggle('isCreating')" class="hover:text-white">Responder</a>
+                        <a href="#" wire:click.prevent="$toggle('isCreating')" class="hover:text-black font-bold">Responder</a>
                     @endif
 
                     @can('update', $reply)
-                        <a href="#" wire:click.prevent="$toggle('isEditing')" class="hover:text-white">Editar</a>
+                        <a href="#" wire:click.prevent="$toggle('isEditing')" class="hover:text-black font-bold">Editar</a>
                     @endcan
                 </p>
             </div>

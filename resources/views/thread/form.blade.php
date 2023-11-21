@@ -1,9 +1,9 @@
 <div>
     <select 
         name="forum_category_id"
-        class="bg-slate-800 border-1 rounded-md w-full p-3 text-white/60 text-xs capitalize mb-4"
+        class="bg-white border border-gray-300 rounded-md w-full p-3 text-slate/60 text-xs capitalize mb-4"
     >
-        <option value="">seleccionar categoría</option>
+        <option class="text-slate/60">seleccionar categoría</option>
 
         @foreach ( $forumCategories as $forumCategory )
             <option 
@@ -20,14 +20,14 @@
         type="text" 
         name="title" 
         placeholder="título"
-        class="bg-slate-800 border-1 rounded-md w-full p-3 text-white/60 text-xs mb-4"
+        class="bg-white border border-gray-300 rounded-md w-full p-3 text-slate/60 text-xs mb-4"
         value="{{ old('title', $thread->title) }}"
     >
 
     <textarea 
         name="body" 
         rows="10"
-        placeholder="Descripción del problema"
-        class="bg-slate-800 border-1 rounded-md w-full p-3 text-white/60 text-xs mb-4"
+        placeholder="Descripción"
+        class="bg-white border border-gray-300 rounded-md w-full p-3 text-slate/60 text-xs mb-4"
     >{{ old('body', $thread->body ) }}</textarea>
 </div>
