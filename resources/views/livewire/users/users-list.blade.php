@@ -41,7 +41,7 @@
                         <td class="pl-6 py-3">
                             <img class="w-16 h-16 rounded-full object-cover" src="{{ $user->profile_photo_url }}" alt="{{ 'image of ' . $user->name }}">
                         </td>
-                        <td class="flex flex-col px-3 py-4 font-bold">
+                        <td class="px-3 py-4 font-bold">
                             <div>
                                 {{ $user->name }}
                             </div>
