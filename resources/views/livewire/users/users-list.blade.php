@@ -1,21 +1,22 @@
 <x-table>
-    <div class="flex items-center justify-between gap-3 px-3 py-6">
+    <div class="flex items-center justify-between gap-3 px-6 py-6">
         <x-input class="flex-1 gap-3" type="text" wire:model="search" placeholder="busca un usuario" />
         @livewire('users.create-user')
     </div>
     @if ($users->count())
-        <table class="min-w-full divide-y divide-gray-200">
+        <table class="min-w-full divide-y divide-gray-200 shadow-sm">
             <thead>
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                         <div class="flex items-center justify-between">
                             image
                         </div>
                     </th>
                     <th wire:click="order('name')" scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
                         <div class="flex items-center justify-between">
-                            name and email   
-                            <!-- sort -->
+                            <div>
+                                name and email   
+                            </div>
                             <x-sort-icon :field="'name'" :sort="$sort" :direction="$direction"/>
                         </div>
                     </th>
@@ -40,7 +41,7 @@
                             <div>
                                 {{ $user->name }}
                             </div>
-                            <div class="text-xs text-gray-500 font-light">
+                            <div class="text-xs text-cyan-600 font-light">
                                 {{ $user->email }}
                             </div>
                         </td>
@@ -62,11 +63,11 @@
         </table>
     @else
         <div class="flex text-2xl items-center justify-center px-3 pb-6">
-            No se encontró ningún user, intenta con otra palabra.
+            No se encontró ningún usuario, intenta con otra palabra.
         </div>
     @endif
     @if ($users->hasPages())
-        <div class="px-3 py-3">
+        <div class="p-6">
             {{ $users->links() }}
         </div>
     @endif
