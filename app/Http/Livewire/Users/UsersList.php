@@ -26,11 +26,13 @@ class UsersList extends Component
     {
         $users = User::where('name', 'like', '%'.$this->search.'%')
         ->orWhere('email', 'like', '%'.$this->search.'%')
+        ->orWhere('phone', 'like', '%'.$this->search.'%')
+        ->orWhere('city', 'like', '%'.$this->search.'%')
         ->orderBy($this->sort, $this->direction)
         ->paginate(10);
 
         return view('livewire.users.users-list', compact('users'));
-    }
+    }   
 
     public function order($sort)
     {
