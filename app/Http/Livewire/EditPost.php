@@ -18,6 +18,7 @@ class EditPost extends Component
     protected $rules = [
         'post.title' => 'required',
         'post.content' => 'required',
+        'post.image' => 'mimes:jpeg,jpg,png,gif|max:1000',
     ];
 
     public function mount(Post $post)
