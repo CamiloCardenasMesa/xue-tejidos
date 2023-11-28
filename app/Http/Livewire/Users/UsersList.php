@@ -33,7 +33,7 @@ class UsersList extends Component
         ->paginate(10);
 
         return view('livewire.users.users-list', compact('users'));
-    }   
+    }
 
     public function order($sort)
     {
@@ -56,19 +56,17 @@ class UsersList extends Component
 
     public function destroy(User $user)
     {
-        // Verifica si el usuario a eliminar es el usuario actualmente autenticado
         if (auth()->user()->id === $user->id) {
             $this->errorMessage = 'No puedes eliminar al usuario actualmente autenticado.';
+
             return;
         }
 
-        // Elimina el usuario si no es el usuario actualmente autenticado
         $user->delete();
 
         // Establece un mensaje de éxito
         session()->flash('success', 'Usuario eliminado exitosamente.');
 
-        // Puedes redirigir a una página específica después de la eliminación
         return redirect()->route('users');
     }
 }
