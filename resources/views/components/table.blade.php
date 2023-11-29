@@ -1,4 +1,4 @@
-<div class="my-2 overflow-x-auto border sm:rounded-lg">
+<div class="overflow-x-auto border sm:rounded-lg">
     <div class="align-middle inline-block min-w-full">
         <div class="shadow overflow-hidden">
             {{ $slot }}
