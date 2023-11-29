@@ -1,5 +1,5 @@
 <div>
-    <div class="p-3 inline-flex bg-gray-200 rounded-lg cursor-pointer" wire:click="$set('open', true)">
+    <div class="p-3 bg-gray-200 rounded-lg cursor-pointer" wire:click="$set('open', true)">
         <a>
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                 <path
