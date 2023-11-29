@@ -27,7 +27,7 @@
         @livewire('navigation-menu')
 
         <!-- Page Content -->
-        <main class="max-w-7xl mx-auto lg:px-8 py-3 lg:py-9">
+        <main class="max-w-7xl mx-auto lg:px-8 lg:py-9">
             {{ $slot }}
         </main>
     </div>
@@ -43,6 +43,30 @@
                 'success'
             )
         })
+    </script>
+    <script>
+        window.addEventListener('delete', event => {
+            const userId = event.detail.userId;
+
+            Swal.fire({
+                title: "¿Deseas eliminar este usuario?",
+                text: "Esta acción no se puede revertir",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, eliminar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emit('deleteUser', userId);
+                    Swal.fire({
+                        title: "Confirmado",
+                        text: "El usuario ha sido eliminado correctamente",
+                        icon: "success"
+                    });
+                }
+            });
+        });
     </script>
 </body>
 

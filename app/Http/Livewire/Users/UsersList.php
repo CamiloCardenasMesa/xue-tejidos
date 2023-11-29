@@ -15,7 +15,7 @@ class UsersList extends Component
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
-    protected $listeners = ['render'];
+    protected $listeners = ['render', 'destroy', 'deleteUser'];
     public $image;
     public $errorMessage;
 
@@ -49,24 +49,23 @@ class UsersList extends Component
         }
     }
 
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
     public function destroy(User $user)
     {
-        if (auth()->user()->id === $user->id) {
-            $this->errorMessage = 'No puedes eliminar al usuario actualmente autenticado.';
+        if (auth()->user()->id == $user->id) {
+            $this->errorMessage = 'Si deseas eliminar tu cuenta ve a tu prefil y luego a la sección eliminar cuenta';
 
             return;
         }
+        $this->dispatchBrowserEvent('delete', ['userId' => $user->id]);
+    }
 
+    public function deleteUser(User $user)
+    {
         $user->delete();
+    }
 
-        // Establece un mensaje de éxito
-        session()->flash('success', 'Usuario eliminado exitosamente.');
-
-        return redirect()->route('users');
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }
