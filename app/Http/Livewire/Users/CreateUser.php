@@ -15,35 +15,65 @@ class CreateUser extends Component
     public $email;
     public $password;
     public $confirmPassword;
+    public $birthday;
+    public $phone;
+    public $city;
+    public $country;
     public $image;
+    public $imageId;
 
     protected $rules = [
-        'name' => 'required|min:5',
+        'name' => 'required|min:3|max:70',
         'email' => 'required|email|unique:users,email',
-        'password' => 'required|same:confirmPassword',
-        'image' => 'image:2048|nullable',
+        'password' => 'required|min:8',
+        'confirmPassword' => 'required|same:password',
+        'birthday' => 'nullable|date_format:Y-m-d',
+        'phone' => 'nullable|string|min:7|max:20',
+        'city' => 'nullable|string|min:3|max:50',
+        'country' => 'nullable|string|min:3|max:56',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ];
 
-    public function render()
+    public function mount()
     {
-        return view('livewire.users.create-user');
+        $this->imageId = rand();
     }
 
     public function save()
     {
         $this->validate();
-        $image = $this->image->store('public/profile-photos');
 
-        User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => $this->password,
-            'profile_photo_path' => $image,
-        ]);
+        $this->createUser();
 
         $this->resetForm();
+        $this->imageId = rand();
         $this->emitTo('users.users-list', 'render');
         $this->emit('alert', 'Se ha creado el usuario');
+    }
+
+    protected function createUser()
+    {
+        $userData = [
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => bcrypt($this->password),
+            'birthday' => $this->birthday,
+            'phone' => $this->phone,
+            'city' => $this->city,
+            'country' => $this->country,
+            'profile_photo_path' => $this->uploadImage(),
+        ];
+
+        return User::create($userData);
+    }
+
+    protected function uploadImage()
+    {
+        if ($this->image) {
+            return $this->image->store('public/profile-photos');
+        }
+
+        return null;
     }
 
     public function updated($propertyName)
@@ -59,7 +89,16 @@ class CreateUser extends Component
             'email',
             'password',
             'confirmPassword',
-            'image',
+            'birthday',
+            'phone',
+            'password',
+            'city',
+            'country',
         ]);
+    }
+
+    public function render()
+    {
+        return view('livewire.users.create-user');
     }
 }
