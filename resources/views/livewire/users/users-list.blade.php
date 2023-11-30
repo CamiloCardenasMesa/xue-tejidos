@@ -7,7 +7,7 @@
     @endif
 
     {{-- search bar --}}
-    <div class="flex items-center p-3 lg:p-6 gap-3">
+    <div class="flex items-center p-3 lg:p-6 gap-2">
         <x-input class="flex-1" type="text" wire:model="search" placeholder="busca un usuario" />
         @livewire('users.create-user')
     </div>
@@ -15,7 +15,7 @@
     {{-- table --}}
     @if ($users->count())
     <section class="overflow-x-auto">
-        <table class="divide-y divide-gray-200 shadow-sm">
+        <table class="min-w-full divide-y divide-gray-200 shadow-sm">
             <thead>
                 <tr>
                     <th scope="col" class="px-7 py-3 text-left text-xs font-medium text-gray-500 uppercase">
