@@ -52,9 +52,9 @@ class EditUser extends Component
     {
         return [
             'user.name' => 'required|string|min:5|max:255',
-            'user.email' => 'required|email|unique:users,email,' . $this->user->id,
-            'user.phone' => 'nullable|string|unique:users,phone,' . $this->user->id,
-            'user.birthday' => 'required|date_format:Y-m-d',
+            'user.email' => 'required|email|unique:users,email,'.$this->user->id,
+            'user.phone' => 'nullable|string|unique:users,phone,'.$this->user->id,
+            'user.birthday' => 'nullable|date_format:Y-m-d',
             'user.city' => 'nullable|string|max:85',
             'user.country' => 'nullable|string|max:60',
             'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:2048',
