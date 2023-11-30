@@ -15,8 +15,9 @@ class UsersList extends Component
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
-    protected $listeners = ['render'];
+    protected $listeners = ['render', 'destroy', 'deleteUser'];
     public $image;
+    public $errorMessage;
 
     protected $rules = [
         'image' => 'image:2048',
@@ -26,8 +27,10 @@ class UsersList extends Component
     {
         $users = User::where('name', 'like', '%'.$this->search.'%')
         ->orWhere('email', 'like', '%'.$this->search.'%')
+        ->orWhere('phone', 'like', '%'.$this->search.'%')
+        ->orWhere('city', 'like', '%'.$this->search.'%')
         ->orderBy($this->sort, $this->direction)
-        ->paginate(5);
+        ->paginate(10);
 
         return view('livewire.users.users-list', compact('users'));
     }
@@ -44,6 +47,21 @@ class UsersList extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function destroy(User $user)
+    {
+        if (auth()->user()->id == $user->id) {
+            $this->errorMessage = 'Si deseas eliminar tu cuenta ve a tu prefil y luego a la sección eliminar cuenta';
+
+            return;
+        }
+        $this->dispatchBrowserEvent('delete', ['userId' => $user->id]);
+    }
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
     }
 
     public function updatingSearch()
