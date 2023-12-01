@@ -27,7 +27,7 @@
         @livewire('navigation-menu')
 
         <!-- Page Content -->
-        <main class="max-w-7xl mx-auto lg:px-8 py-3 lg:py-9">
+        <main class="max-w-7xl mx-auto lg:px-8 lg:py-9">
             {{ $slot }}
         </main>
     </div>

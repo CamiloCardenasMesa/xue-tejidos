@@ -30,7 +30,7 @@
                             <x-sort-icon :field="'content'" :sort="$sort" :direction="$direction" />
                         </div>
                     </th>
-                    <th scope="col" class="relative xp-6 py-3">
+                    <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">edit</span>
                     </th>
                 </tr>
