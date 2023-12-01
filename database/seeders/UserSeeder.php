@@ -10,8 +10,8 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        Storage::deleteDirectory('profile-photos');
-        Storage::makeDirectory('profile-photos');
+        Storage::deleteDirectory('public/profile-photos');
+        Storage::makeDirectory('public/profile-photos');
         User::factory(100)->create();
     }
 }

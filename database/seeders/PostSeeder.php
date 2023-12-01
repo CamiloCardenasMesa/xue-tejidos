@@ -10,8 +10,8 @@ class PostSeeder extends Seeder
 {
     public function run(): void
     {
-        Storage::deleteDirectory('posts');
-        Storage::makeDirectory('posts');
-        Post::factory(10)->create();
+        Storage::deleteDirectory('public/posts');
+        Storage::makeDirectory('public/posts');
+        Post::factory(100)->create();
     }
 }
