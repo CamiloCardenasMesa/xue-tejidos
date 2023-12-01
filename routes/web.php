@@ -19,6 +19,10 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/products', function () {
+        return view('products');
+    })->name('products');
+
     Route::get('/posts', function () {
         return view('posts');
     })->name('posts');

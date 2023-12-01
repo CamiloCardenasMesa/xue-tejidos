@@ -10,8 +10,8 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        Storage::deleteDirectory('products');
-        Storage::makeDirectory('products');
-        Product::factory(10)->create();
+        Storage::deleteDirectory('public/products');
+        Storage::makeDirectory('public/products');
+        Product::factory(100)->create();
     }
 }
