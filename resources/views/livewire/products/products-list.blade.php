@@ -9,7 +9,7 @@
     
         {{-- search bar --}}
         <div class="flex items-center p-3 lg:p-6 gap-2">
-            <x-input class="flex-1" type="text" wire:model="search" placeholder="busca un usuario" />
+            <x-input class="flex-1" type="text" wire:model="search" placeholder="busca un producto" />
             {{-- @livewire('products.create-product') --}}
         </div>
     
@@ -19,22 +19,22 @@
             <table class="min-w-full divide-y divide-gray-200 shadow-sm">
                 <thead>
                     <tr>
-                        <th scope="col" class="px-7 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                        <th scope="col" class="px-7 pb-3 text-left text-xs font-medium text-gray-500 uppercase">
                             <div class="flex items-center justify-between">
                                 imagen
                             </div>
                         </th>
                         <th wire:click="order('name')" scope="col"
-                            class="w-1/3 p-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
+                            class="w-1/3 px-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    nombre y descripcion
+                                    nombre
                                 </div>
                                 <x-sort-icon :field="'name'" :sort="$sort" :direction="$direction" />
                             </div>
                         </th>
                         <th wire:click="order('price')" scope="col"
-                            class="p-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
+                            class="px-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
                             <div class="flex items-center justify-between">
                                 <div>
                                     price
@@ -43,19 +43,19 @@
                             </div>
                         </th>
                         <th wire:click="order('stock')" scope="col"
-                            class="px-3 py-3 text-left text-xs font-medium text-gray-500 cursor-pointer uppercase">
+                            class="px-3 text-left text-xs font-medium text-gray-500 cursor-pointer uppercase">
                             <div class="flex items-center justify-between">
                                 Existencias
                                 <x-sort-icon :field="'stock'" :sort="$sort" :direction="$direction" />
                             </div>
                         </th>
-                        <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                        <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
                             estado
                         </th>
-                        <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                        <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
                             categoria
                         </th>
-                        <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                        <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
                             Acciones
                         </th>
                     </tr>
@@ -70,8 +70,8 @@
                             <td class="px-3 font-bold">
                                 {{ $product->name }}
                             </td>
-                            <td class="px-3">
-                                $ {{ $product->price }}
+                            <td class="px-3 font-bold">
+                                ${{ $product->price }}
                             </td>
                             <td class="px-3">
                                 {{ $product->stock }}
