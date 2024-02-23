@@ -11,6 +11,7 @@
         <div class="flex items-center p-3 lg:p-6 gap-2">
             <x-input class="flex-1" type="text" wire:model="search" placeholder="busca un producto" />
             {{-- @livewire('products.create-product') --}}
+            <livewire:products.create-product />
         </div>
     
         {{-- table --}}
