@@ -49,7 +49,7 @@ class CreateProduct extends Component
             'stock' => $this->stock,
             'enable' => $this->enable,
             'category_id' => $this->category_id,
-            'image' => $this->image->storeAs('products', $imageName, 'photos'),
+            'image' => $this->image->storeAs('images/products', $imageName),
         ];
 
         return Product::create($productData);

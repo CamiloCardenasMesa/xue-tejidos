@@ -10,8 +10,14 @@ class PostSeeder extends Seeder
 {
     public function run(): void
     {
-        Storage::deleteDirectory('public/posts');
-        Storage::makeDirectory('public/posts');
+        $directory = 'images/posts';
+
+        if (Storage::exists($directory)) {
+            Storage::deleteDirectory($directory);
+        }
+
+        Storage::makeDirectory($directory);
+
         Post::factory(100)->create();
     }
 }
