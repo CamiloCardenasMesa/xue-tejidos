@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->integer('price');
             $table->unsignedInteger('stock');
-            $table->boolean('enable')->default(true);
+            $table->boolean('enable')->default(false);
             $table->foreignId('category_id')->nullable();
             $table->timestamps();
         });
