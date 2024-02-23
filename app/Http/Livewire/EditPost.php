@@ -18,7 +18,7 @@ class EditPost extends Component
     protected $rules = [
         'post.title' => 'required',
         'post.content' => 'required',
-        'post.image' => 'mimes:jpeg,jpg,png,gif|max:1000',
+        'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:1000',
     ];
 
     public function mount(Post $post)
@@ -29,10 +29,9 @@ class EditPost extends Component
     public function save()
     {
         $this->validate();
-
         if ($this->image) {
-            Storage::delete([$this->post->image]);
-            $this->post->image = $this->image->store('public/posts');
+            Storage::disk('public')->delete($this->post->image);
+            $this->post->image = $this->image->store('images/posts');
         }
 
         $this->post->save();

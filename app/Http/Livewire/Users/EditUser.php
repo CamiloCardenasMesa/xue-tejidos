@@ -26,8 +26,8 @@ class EditUser extends Component
         $this->validate($this->rules());
 
         if ($this->image) {
-            Storage::delete([$this->user->avatar()]);
-            $this->user->profile_photo_path = $this->image->store('public/profile-photos');
+            Storage::disk('public')->delete($this->user->profile_photo_path);
+            $this->user->profile_photo_path = $this->image->store('images/profile-photos');
         }
 
         $this->user->save();
