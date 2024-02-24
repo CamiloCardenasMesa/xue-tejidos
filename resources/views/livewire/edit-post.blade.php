@@ -17,7 +17,7 @@
             @if ($image)
                 <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="imagen del post">
                 @else
-                <img class="mb-4" src="{{ Storage::url($post->image) }}" alt="imagen anterior del post">
+                <img class="mb-4" src="{{ Storage::url($post->image) }}" alt="imagen actual del post">
             @endif
 
             <div class="mb-4">

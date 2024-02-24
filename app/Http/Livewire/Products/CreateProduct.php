@@ -16,16 +16,17 @@ class CreateProduct extends Component
     public $description;
     public $price;
     public $stock;
-    public $enable = true;
+    public $enable = false;
     public $category_id;
     public $image;
 
     protected $rules = [
         'name' => 'required|min:3|max:70',
-        'description' => 'nullable|min:5|max:255',
+        'description' => 'required|min:5|max:255',
         'price' => 'required|integer|digits_between: 4,10',
         'stock' => 'required|integer|min:1|max:100',
         'category_id' => 'required|integer',
+        'enable' => 'nullable',
         'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ];
 

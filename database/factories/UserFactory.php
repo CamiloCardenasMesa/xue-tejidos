@@ -41,7 +41,7 @@ class UserFactory extends Factory
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
-            'profile_photo_path' => $profileImage ? Storage::disk('public')->putFile('profile-photos', new File($profileImage)) : null,
+            'profile_photo_path' => $profileImage ? Storage::disk('public')->putFile('images/profile-photos', new File($profileImage)) : null,
             'current_team_id' => null,
         ];
     }
