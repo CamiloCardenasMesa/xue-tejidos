@@ -70,7 +70,7 @@ class CreateUser extends Component
     protected function uploadImage()
     {
         if ($this->image) {
-            return $this->image->store('public/profile-photos');
+            return $this->image->store('images/profile-photos');
         }
 
         return null;

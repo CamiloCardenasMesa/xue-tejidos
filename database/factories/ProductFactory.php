@@ -19,7 +19,7 @@ class ProductFactory extends Factory
             'stock' => $this->faker->numberBetween(2, 10),
             'enable' => true,
             'category_id' => $this->faker->numberBetween(1, 3),
-            'image' => $productImage ? Storage::disk('public')->putFile('products', new File($productImage)) : null,
+            'image' => $productImage ? Storage::disk('public')->putFile('images/products', new File($productImage)) : null,
         ];
     }
 }

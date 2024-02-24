@@ -17,7 +17,7 @@
             @if ($image)
                 <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="imagen del user">
             @else
-                <img class="mb-4" src="{{ $user->avatar() }}" alt="imagen anterior del user">
+                <img class="mb-4" src="{{ $user->avatar() }}" alt="imagen actual del usuario">
             @endif
 
             <div class="mb-4">

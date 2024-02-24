@@ -15,7 +15,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'content' => $this->faker->text(),
-            'image' => $postImage ? Storage::disk('public')->putFile('posts', new File($postImage)) : null,
+            'image' => $postImage ? Storage::disk('public')->putFile('images/posts', new File($postImage)) : null,
         ];
     }
 }
