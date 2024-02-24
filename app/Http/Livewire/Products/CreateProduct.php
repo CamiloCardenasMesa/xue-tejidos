@@ -16,7 +16,7 @@ class CreateProduct extends Component
     public $description;
     public $price;
     public $stock;
-    public $enable = false;
+    public $status = false;
     public $category_id;
     public $image;
 
@@ -26,7 +26,7 @@ class CreateProduct extends Component
         'price' => 'required|integer|digits_between: 4,10',
         'stock' => 'required|integer|min:1|max:100',
         'category_id' => 'required|integer',
-        'enable' => 'nullable',
+        'status' => 'nullable',
         'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ];
 
@@ -36,7 +36,7 @@ class CreateProduct extends Component
         'description' => 'descripción',
         'stock' => 'Stock',
         'category_id' => 'categoría',
-        'enable' => 'estado',
+        'status' => 'estado',
         'image' => 'imagen',
     ];
 
@@ -58,7 +58,7 @@ class CreateProduct extends Component
             'description' => $this->description,
             'price' => $this->price,
             'stock' => $this->stock,
-            'enable' => $this->enable,
+            'status' => $this->status,
             'category_id' => $this->category_id,
             'image' => $this->image->storeAs('images/products', $imageName),
         ];
@@ -74,7 +74,7 @@ class CreateProduct extends Component
             'description',
             'price',
             'stock',
-            'enable',
+            'status',
             'category_id',
             'image', // no se está reseteando la imagen
         ]);

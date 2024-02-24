@@ -59,7 +59,7 @@
 
             <div class="mb-4">
                 <x-label value="Categoria" for="category" />
-                <select wire:model="product.category_id" name="enable" id="category" class="w-full">
+                <select wire:model="product.category_id" name="status" id="category" class="w-full">
                     <option value="">Selecciona una categoría</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -69,13 +69,13 @@
             </div>
 
             <div class="mb-4">
-                <x-label value="Estado" for="enable" />
-                <select wire:model="product.enable" name="enable" id="enable" class="w-full">
+                <x-label value="Estado" for="status" />
+                <select wire:model="product.status" name="status" id="status" class="w-full">
                     <option value="">Selecciona una opción</option>
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
-                <x-input-error for="product.enable" />
+                <x-input-error for="product.status" />
             </div>
 
         </x-slot>

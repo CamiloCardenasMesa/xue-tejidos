@@ -22,7 +22,7 @@ class EditProduct extends Component
         'product.price' => 'required|integer|min:10000|digits_between: 4,8',
         'product.stock' => 'required|integer|min:1|max:100|',
         'product.category_id' => 'required',
-        'product.enable' => 'required',
+        'product.status' => 'required',
         'image' => 'nullable|image|max:2048|mimes:jpg,jpeg,png',
     ];
 
@@ -32,7 +32,7 @@ class EditProduct extends Component
         'description' => 'descripción',
         'stock' => 'Stock',
         'category_id' => 'categoría',
-        'enable' => 'estado',
+        'status' => 'estado',
         'image' => 'imagen',
     ];
 

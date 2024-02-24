@@ -61,13 +61,13 @@
             </div>
 
             <div class="mb-4">
-                <x-label value="Estado" for="enable" />
-                <select wire:model="enable" name="enable" id="enable" class="w-full">
+                <x-label value="Estado" for="status" />
+                <select wire:model="status" name="status" id="status" class="w-full">
                     <option value="">Selecciona una opción</option>
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
-                <x-input-error for="enable" />
+                <x-input-error for="status" />
             </div>
         </x-slot>
 
