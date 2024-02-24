@@ -26,6 +26,16 @@ class EditProduct extends Component
         'image' => 'nullable|image|max:2048|mimes:jpg,jpeg,png',
     ];
 
+    protected $validationAttributes = [
+        'price' => 'precio',
+        'name' => 'nombre',
+        'description' => 'descripción',
+        'stock' => 'Stock',
+        'category_id' => 'categoría',
+        'enable' => 'estado',
+        'image' => 'imagen',
+    ];
+
     public function mount(Product $product)
     {
         $this->product = $product;
@@ -47,11 +57,9 @@ class EditProduct extends Component
         $this->emit('alert', 'El producto se ha actualizado con éxito');
     }
 
-    public function render()
+    public function updated($propertyName)
     {
-        $categories = Category::all();
-
-        return view('livewire.products.edit-product', compact('categories'));
+        $this->validateOnly($propertyName);
     }
 
     private function resetForm()
@@ -61,4 +69,12 @@ class EditProduct extends Component
             'image',
         ]);
     }
+    
+    public function render()
+    {
+        $categories = Category::all();
+
+        return view('livewire.products.edit-product', compact('categories'));
+    }
+
 }

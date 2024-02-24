@@ -16,6 +16,19 @@ class EditUser extends Component
     public $open = false;
     public $image;
 
+    public function rules(): array
+    {
+        return [
+            'user.name' => 'required|string|min:3|max:255',
+            'user.email' => 'required|email|unique:users,email,'.$this->user->id,
+            'user.phone' => 'required|string|min:7|max:30|unique:users,phone,'.$this->user->id,
+            'user.birthday' => 'nullable|date_format:Y-m-d',
+            'user.city' => 'nullable|string|min:3|max:50',
+            'user.country' => 'nullable|string|min:3|max:56',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+        ];
+    }
+
     public function mount(User $user)
     {
         $this->user = $user;
@@ -43,21 +56,13 @@ class EditUser extends Component
         $this->image = '';
     }
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function render(): View
     {
         return view('livewire.users.edit-user');
-    }
-
-    public function rules(): array
-    {
-        return [
-            'user.name' => 'required|string|min:5|max:255',
-            'user.email' => 'required|email|unique:users,email,'.$this->user->id,
-            'user.phone' => 'nullable|string|unique:users,phone,'.$this->user->id,
-            'user.birthday' => 'nullable|date_format:Y-m-d',
-            'user.city' => 'nullable|string|max:85',
-            'user.country' => 'nullable|string|max:60',
-            'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:2048',
-        ];
     }
 }

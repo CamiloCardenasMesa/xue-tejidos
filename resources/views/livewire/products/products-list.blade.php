@@ -10,7 +10,6 @@
         {{-- search bar --}}
         <div class="flex items-center p-3 lg:p-6 gap-2">
             <x-input class="flex-1" type="text" wire:model="search" placeholder="busca un producto" />
-            {{-- @livewire('products.create-product') --}}
             <livewire:products.create-product />
         </div>
 
@@ -51,10 +50,10 @@
                                 </div>
                             </th>
                             <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
-                                estado
+                                categoria
                             </th>
                             <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
-                                categoria
+                                estado
                             </th>
                             <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
                                 Acciones
@@ -83,11 +82,17 @@
                                 <td class="px-3">
                                     {{ $product->stock }}
                                 </td>
-                                <td class="px-3 py-2">
-                                    {{ $product->enable ? 'Activo' : 'Inactivo' }}
-                                </td>
+
                                 <td class="px-3 py-2">
                                     {{ $product->category->name }}
+                                </td>
+
+                                <td class="px-3 py-2">
+                                    @if ($product->enable)
+                                        <span class="text-green-500 p-2 rounded-lg">Activo</span>
+                                    @else
+                                        <span class="text-red-700 p-2 rounded-lg">Inactivo</span>
+                                    @endif
                                 </td>
                                 <td class="p-3 lg:pr-6">
                                     <section class="flex items-center">
@@ -105,7 +110,7 @@
             </section>
         @else
             <div class="flex text-2xl items-center justify-center px-3 pb-6">
-                No se encontró ningún usuario, intenta con otra palabra.
+                No se encontró ningún producto, intenta con otra palabra.
             </div>
         @endif
         @if ($products->hasPages())

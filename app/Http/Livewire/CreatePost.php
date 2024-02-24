@@ -16,9 +16,9 @@ class CreatePost extends Component
     public $image;
 
     protected $rules = [
-        'title' => 'required|max:10',
-        'content' => 'required|min:10',
-        'image' => 'required|image:2048',
+        'title' => 'required|string|min:3|max:100',
+        'content' => 'required|min:5|max:10000',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ];
 
     public function render()

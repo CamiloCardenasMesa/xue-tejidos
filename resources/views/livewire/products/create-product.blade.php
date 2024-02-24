@@ -39,13 +39,13 @@
 
             <div class="mb-4">
                 <x-label value="Precio" />
-                <x-input wire:model="price" type="number" class="w-full" />
+                <x-input wire:model="price" type="number" min="10000" max="1000000" class="w-full" />
                 <x-input-error for="price" />
             </div>
 
             <div class="mb-4">
                 <x-label value="Stock" />
-                <x-input wire:model="stock" type="number" class="w-full" />
+                <x-input wire:model="stock" type="number" min="1" max="100" class="w-full" />
                 <x-input-error for="stock" />
             </div>
 
