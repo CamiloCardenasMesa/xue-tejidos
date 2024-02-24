@@ -14,10 +14,6 @@
                 <span class="block sm:inline">Espera un momento por favor</span>
             </div>
 
-            <div>
-                <input type="file" wire:model="image" />
-            </div>
-
             {{-- refactorizar esta validación de la imagen --}}
             @if ($image)
                 @if ($errors->has('image'))
@@ -25,11 +21,17 @@
                 @elseif ($image->isValid() && in_array($image->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']))
                     <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="Previsualización de la imagen">
                 @else
-                    <div class="text-red-500">El formato de la imagen no es válido. Por favor, asegúrate de que sea un archivo JPG, JPEG o PNG.</div>
+                    <div class="text-red-500">El formato de la imagen no es válido. Por favor, asegúrate de que sea un
+                        archivo JPG, JPEG o PNG.</div>
                 @endif
             @else
-                <img class="mb-4" src="{{ $product->image ? Storage::url($product->image) : '' }}" alt="Imagen del producto">
+                <img class="mb-4" src="{{ $product->image ? Storage::url($product->image) : '' }}"
+                    alt="Imagen del producto">
             @endif
+
+            <div>
+                <input type="file" wire:model="image" />
+            </div>
 
             <div class="mb-4">
                 <x-label value="Nombre" />
@@ -75,7 +77,7 @@
                 </select>
                 <x-input-error for="product.enable" />
             </div>
-            
+
         </x-slot>
 
         <x-slot name="footer">

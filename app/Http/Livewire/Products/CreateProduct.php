@@ -22,12 +22,22 @@ class CreateProduct extends Component
 
     protected $rules = [
         'name' => 'required|min:3|max:70',
-        'description' => 'required|min:5|max:255',
+        'description' => 'required|min:5|max:2000',
         'price' => 'required|integer|digits_between: 4,10',
         'stock' => 'required|integer|min:1|max:100',
         'category_id' => 'required|integer',
         'enable' => 'nullable',
         'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ];
+
+    protected $validationAttributes = [
+        'price' => 'precio',
+        'name' => 'nombre',
+        'description' => 'descripción',
+        'stock' => 'Stock',
+        'category_id' => 'categoría',
+        'enable' => 'estado',
+        'image' => 'imagen',
     ];
 
     public function save()
@@ -68,6 +78,11 @@ class CreateProduct extends Component
             'category_id',
             'image', // no se está reseteando la imagen
         ]);
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
 
     public function render()

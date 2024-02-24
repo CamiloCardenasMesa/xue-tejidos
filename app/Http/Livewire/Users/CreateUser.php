@@ -23,15 +23,15 @@ class CreateUser extends Component
     public $imageId;
 
     protected $rules = [
-        'name' => 'required|min:3|max:70',
+        'name' => 'required|string|min:3|max:70',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:8',
         'confirmPassword' => 'required|same:password',
         'birthday' => 'nullable|date_format:Y-m-d',
-        'phone' => 'nullable|string|min:7|max:20',
+        'phone' => 'nullable|string|min:7|max:30',
         'city' => 'nullable|string|min:3|max:50',
         'country' => 'nullable|string|min:3|max:56',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
     ];
 
     public function mount()

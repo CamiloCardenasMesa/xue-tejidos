@@ -16,9 +16,9 @@ class EditPost extends Component
     public $image;
 
     protected $rules = [
-        'post.title' => 'required',
-        'post.content' => 'required',
-        'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:1000',
+        'post.title' => 'required|string|min:3|max:100',
+        'post.content' => 'required|min:5|max:10000',
+        'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:2048',
     ];
 
     public function mount(Post $post)
@@ -41,14 +41,19 @@ class EditPost extends Component
         $this->emit('alert', 'El post se ha actualizado con éxito');
     }
 
-    public function render()
-    {
-        return view('livewire.edit-post');
-    }
-
     private function resetForm()
     {
         $this->open = false;
         $this->image = '';
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+    public function render()
+    {
+        return view('livewire.edit-post');
     }
 }
