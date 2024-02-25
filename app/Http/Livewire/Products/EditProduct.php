@@ -69,12 +69,11 @@ class EditProduct extends Component
             'image',
         ]);
     }
-    
+
     public function render()
     {
         $categories = Category::all();
 
         return view('livewire.products.edit-product', compact('categories'));
     }
-
 }

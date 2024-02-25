@@ -34,8 +34,8 @@ class CreateProduct extends Component
         'price' => 'precio',
         'name' => 'nombre',
         'description' => 'descripción',
-        'stock' => 'Stock',
-        'category_id' => 'categoría',
+        'stock' => 'existencias',
+        'category_id' => 'categorías',
         'status' => 'estado',
         'image' => 'imagen',
     ];
