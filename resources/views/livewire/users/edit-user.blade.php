@@ -31,19 +31,24 @@
                 <x-input-error for="user.phone" />
             </div>
             <div class="mb-4">
-                <x-label value="{{ trans('users.birthday') }}" />
-                <x-input wire:model="user.birthday" type="date" class="w-full" />
-                <x-input-error for="user.birthday" />
-            </div>
-            <div class="mb-4">
                 <x-label value="{{ trans('users.city') }}" />
                 <x-input wire:model="user.city" type="text" class="w-full" />
                 <x-input-error for="user.city" />
             </div>
             <div class="mb-4">
+                <x-label value="{{ trans('users.address') }}" />
+                <x-input wire:model="user.address" type="text" class="w-full" />
+                <x-input-error for="user.address" />
+            </div>
+            <div class="mb-4">
                 <x-label value="{{ trans('users.country') }}" />
                 <x-input wire:model="user.country" type="text" class="w-full" />
                 <x-input-error for="user.country" />
+            </div>
+            <div class="mb-4">
+                <x-label value="{{ trans('users.birthday') }}" />
+                <x-input wire:model="user.birthday" type="date" class="w-full" />
+                <x-input-error for="user.birthday" />
             </div>
         </x-slot>
         <x-slot name="footer">
