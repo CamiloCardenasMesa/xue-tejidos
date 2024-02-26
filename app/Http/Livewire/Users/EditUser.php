@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -25,6 +24,7 @@ class EditUser extends Component
             'user.birthday' => 'nullable|date_format:Y-m-d',
             'user.city' => 'nullable|string|min:3|max:50',
             'user.country' => 'nullable|string|min:3|max:56',
+            'user.address' => 'nullable|string|min:5|max:100',
         ];
     }
 
@@ -36,12 +36,6 @@ class EditUser extends Component
     public function save()
     {
         $this->validate($this->rules());
-
-        // TODO: Quitar esta funcionalidad
-        if ($this->image) {
-            Storage::disk('public')->delete($this->user->profile_photo_path);
-            $this->user->profile_photo_path = $this->image->store('images/profile-photos');
-        }
 
         $this->user->save();
 
