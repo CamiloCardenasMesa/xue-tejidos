@@ -12,8 +12,8 @@
             {{-- alert message for image loading --}}
             <div wire:loading wire:target="image"
                 class="flex flex-col items-center justify-center mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-4 rounded relative">
-                <strong class="font-bold">{{ trans('products.loading_image') }}</strong>
-                <span class="block sm:inline">{{ trans('products.please_wait') }}</span>
+                <strong class="font-bold">{{ trans('flashMessages.loading_image') }}</strong>
+                <span class="block sm:inline">{{ trans('flashMessages.please_wait') }}</span>
             </div>
 
             @if ($image)
@@ -62,7 +62,7 @@
             </div>
 
             <div class="mb-4">
-                <x-label value="Estado" for="status" />
+                <x-label value="{{ trans('products.status') }}" for="status" />
                 <select wire:model="status" name="status" id="status" class="w-full">
                     <option value="">{{ trans('products.status_option') }}</option>
                     <option value="1">{{ trans('products.enabled') }}</option>

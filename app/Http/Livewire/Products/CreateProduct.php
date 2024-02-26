@@ -46,7 +46,7 @@ class CreateProduct extends Component
         $this->createProduct();
         $this->resetForm();
         $this->emitTo('products.products-list', 'render');
-        $this->emit('alert', 'Se ha creado el producto'); // esto es con el modal de sweetAlert
+        $this->emit('alert', trans('products.flash_message.successfully_created')); // esto es con el modal de sweetAlert
     }
 
     protected function createProduct()

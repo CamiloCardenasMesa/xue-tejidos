@@ -7,10 +7,8 @@ return [
     'update' => 'Update',
     'products' => [
         'create' => 'Create product',
-        'delete_question' => '¿Do you want to remove this product?',
-        'delete_alert' => 'This action cannot be reversed',
-        'delete_confirm' => 'Yes, remove',
-        'delete_confirmed' => 'Confirm',
-        'successfully_deleted' => 'successfully removed',
+    ],
+    'users' => [
+        'create' => 'Create user',
     ],
 ];

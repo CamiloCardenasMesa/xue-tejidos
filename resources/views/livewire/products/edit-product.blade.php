@@ -21,14 +21,14 @@
                 @elseif ($image->isValid() && in_array($image->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']))
                     <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="Previsualización de la imagen">
                 @else
-                    <div class="text-red-500">{{ trans('products.image_error') }}</div>
+                    <div class="text-red-500">{{ trans('flashMessages.image_error') }}</div>
                 @endif
             @else
                 <img class="mb-4" src="{{ $product->image ? Storage::url($product->image) : '' }}"
                     alt="Imagen del producto">
             @endif
 
-            <div>
+            <div class="mb-4">
                 <input type="file" wire:model="image" />
             </div>
 
@@ -68,7 +68,7 @@
             </div>
 
             <div class="mb-4">
-                <x-label value="Estado" for="status" />
+                <x-label value="{{ trans('products.status') }}" for="status" />
                 <select wire:model="product.status" name="status" id="status" class="w-full">
                     <option value="">{{ trans('products.status_option') }}</option>
                     <option value="1">{{ trans('products.enabled') }}</option>

@@ -54,7 +54,7 @@ class EditProduct extends Component
 
         $this->resetForm();
         $this->emitTo('products.products-list', 'render');
-        $this->emit('alert', 'El producto se ha actualizado con éxito');
+        $this->emit('alert', trans('products.flash_message.successfully_updated'));
     }
 
     public function updated($propertyName)

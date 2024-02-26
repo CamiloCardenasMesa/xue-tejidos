@@ -85,7 +85,7 @@
                                 </td>
 
                                 <td class="px-3 py-2">
-                                    {{ trans('categories.'.$product->category->name) }}
+                                    {{ trans('categories.' . $product->category->name) }}
                                 </td>
 
                                 <td class="px-3 py-2">
@@ -129,19 +129,19 @@
                 const productId = event.detail.productId;
 
                 Swal.fire({
-                    title: "{{ trans('buttons.products.delete_question') }}",
-                    text: "{{ trans('buttons.products.delete_alert') }}",
+                    title: "{{ trans('products.flash_message.delete_question') }}",
+                    text: "{{ trans('flashMessages.delete_alert') }}",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "{{ trans('buttons.products.delete_confirm') }}"
+                    confirmButtonText: "{{ trans('flashMessages.delete_confirm') }}"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         Livewire.emit('deleteProduct', productId);
                         Swal.fire({
-                            title: "{{ trans('buttons.products.delete_confirmed') }}",
-                            text: "{{ trans('buttons.products.successfully_deleted') }}",
+                            title: "{{ trans('flashMessages.delete_confirmed') }}",
+                            text: "{{ trans('products.flash_message.successfully_deleted') }}",
                             icon: "success"
                         });
                     }

@@ -48,7 +48,7 @@ class CreateUser extends Component
         $this->resetForm();
         $this->imageId = rand();
         $this->emitTo('users.users-list', 'render');
-        $this->emit('alert', 'Se ha creado el usuario');
+        $this->emit('alert', trans('users.flash_message.successfully_created'));
     }
 
     protected function createUser()
