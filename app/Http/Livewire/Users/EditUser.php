@@ -37,12 +37,6 @@ class EditUser extends Component
     {
         $this->validate($this->rules());
 
-        // TODO: Quitar esta funcionalidad
-        if ($this->image) {
-            Storage::disk('public')->delete($this->user->profile_photo_path);
-            $this->user->profile_photo_path = $this->image->store('images/profile-photos');
-        }
-
         $this->user->save();
 
         $this->resetForm();

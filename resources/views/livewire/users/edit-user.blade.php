@@ -8,11 +8,6 @@
             {{ trans('users.edit') }}
         </x-slot>
         <x-slot name="content">
-            <div wire:loading wire:target="image"
-                class="flex flex-col items-center justify-center mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-4 rounded relative">
-                <strong class="font-bold">{{ trans('flashMessages.loading_image') }}</strong>
-                <span class="block sm:inline">{{ trans('flashMessages.please_wait') }}</span>
-            </div>
 
             @if ($image)
                 <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="imagen del usuario">
@@ -50,17 +45,12 @@
                 <x-input wire:model="user.country" type="text" class="w-full" />
                 <x-input-error for="user.country" />
             </div>
-
-            <div>
-                <input type="file" wire:model="image" />
-                <x-input-error for="image" />
-            </div>
         </x-slot>
         <x-slot name="footer">
             <x-secondary-button wire:click="$set('open', false)">
                 {{ trans('buttons.cancel') }}
             </x-secondary-button>
-            <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save, image"
+            <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save"
                 class="disabled:opacity-25">
                 {{ trans('buttons.update') }}
             </x-danger-button>
