@@ -11,18 +11,18 @@ class CategorySeeder extends Seeder
     {
         Category::factory()
         ->create([
-            'name' => trans('categories.woman'),
+            'name' => 'man',
         ]);
 
         Category::factory()
 
         ->create([
-            'name' => trans('categories.man'),
+            'name' => 'woman',
         ]);
 
         Category::factory()
         ->create([
-            'name' => trans('categories.kids'),
+            'name' => 'kids',
         ]);
     }
 }

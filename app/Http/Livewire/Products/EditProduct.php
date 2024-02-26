@@ -22,7 +22,7 @@ class EditProduct extends Component
         'product.price' => 'required|integer|min:10000|digits_between: 4,8',
         'product.stock' => 'required|integer|min:1|max:100|',
         'product.category_id' => 'required',
-        'product.enable' => 'required',
+        'product.status' => 'required',
         'image' => 'nullable|image|max:2048|mimes:jpg,jpeg,png',
     ];
 
@@ -32,7 +32,7 @@ class EditProduct extends Component
         'description' => 'descripción',
         'stock' => 'Stock',
         'category_id' => 'categoría',
-        'enable' => 'estado',
+        'status' => 'estado',
         'image' => 'imagen',
     ];
 
@@ -54,7 +54,7 @@ class EditProduct extends Component
 
         $this->resetForm();
         $this->emitTo('products.products-list', 'render');
-        $this->emit('alert', 'El producto se ha actualizado con éxito');
+        $this->emit('alert', trans('products.flash_message.successfully_updated'));
     }
 
     public function updated($propertyName)
@@ -69,12 +69,11 @@ class EditProduct extends Component
             'image',
         ]);
     }
-    
+
     public function render()
     {
         $categories = Category::all();
 
         return view('livewire.products.edit-product', compact('categories'));
     }
-
 }

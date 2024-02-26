@@ -5,13 +5,13 @@
 
     <x-dialog-modal wire:model="open">
         <x-slot name="title">
-            Editar
+            {{ trans('products.edit') }}
         </x-slot>
         <x-slot name="content">
             <div wire:loading wire:target="image"
                 class="flex flex-col items-center justify-center mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-4 rounded relative">
-                <strong class="font-bold">Tu imagen está cargando.</strong>
-                <span class="block sm:inline">Espera un momento por favor</span>
+                <strong class="font-bold">{{ trans('products.loading_image') }}</strong>
+                <span class="block sm:inline">{{ trans('products.please_wait') }}</span>
             </div>
 
             {{-- refactorizar esta validación de la imagen --}}
@@ -21,72 +21,71 @@
                 @elseif ($image->isValid() && in_array($image->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']))
                     <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="Previsualización de la imagen">
                 @else
-                    <div class="text-red-500">El formato de la imagen no es válido. Por favor, asegúrate de que sea un
-                        archivo JPG, JPEG o PNG.</div>
+                    <div class="text-red-500">{{ trans('flashMessages.image_error') }}</div>
                 @endif
             @else
                 <img class="mb-4" src="{{ $product->image ? Storage::url($product->image) : '' }}"
                     alt="Imagen del producto">
             @endif
 
-            <div>
+            <div class="mb-4">
                 <input type="file" wire:model="image" />
             </div>
 
             <div class="mb-4">
-                <x-label value="Nombre" />
+                <x-label value="{{ trans('products.name') }}" />
                 <x-input wire:model="product.name" type="text" class="w-full" />
                 <x-input-error for="product.name" />
             </div>
 
             <div class="mb-4">
-                <x-label value="Descripcion" />
+                <x-label value="{{ trans('products.description') }}" />
                 <x-input wire:model="product.description" type="text" class="w-full" />
                 <x-input-error for="product.description" />
             </div>
 
             <div class="mb-4">
-                <x-label value="Precio" />
+                <x-label value="{{ trans('products.price') }}" />
                 <x-input wire:model="product.price" type="number" class="w-full" />
                 <x-input-error for="product.price" />
             </div>
 
             <div class="mb-4">
-                <x-label value="Stock" />
+                <x-label value="{{ trans('products.stock') }}" />
                 <x-input wire:model="product.stock" type="number" class="w-full" />
                 <x-input-error for="product.stock" />
             </div>
 
             <div class="mb-4">
-                <x-label value="Categoria" for="category" />
-                <select wire:model="product.category_id" name="enable" id="category" class="w-full">
-                    <option value="">Selecciona una categoría</option>
+                <x-label value="{{ trans('categories.categories') }}" for="category" />
+                <select wire:model="product.category_id" name="status" id="category" class="w-full">
+                    <option value="">{{ trans('products.placeholders.category_option') }}</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}">{{ trans('categories.' . $category->name) }}</option>
                     @endforeach
                 </select>
                 <x-input-error for="product.category_id" />
             </div>
 
             <div class="mb-4">
-                <x-label value="Estado" for="enable" />
-                <select wire:model="product.enable" name="enable" id="enable" class="w-full">
-                    <option value="">Selecciona una opción</option>
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
+                <x-label value="{{ trans('products.status') }}" for="status" />
+                <select wire:model="product.status" name="status" id="status" class="w-full">
+                    <option value="">{{ trans('products.status_option') }}</option>
+                    <option value="1">{{ trans('products.enabled') }}</option>
+                    <option value="0">{{ trans('products.disabled') }}</option>
                 </select>
-                <x-input-error for="product.enable" />
+                <x-input-error for="product.status" />
             </div>
 
         </x-slot>
 
         <x-slot name="footer">
             <x-secondary-button wire:click="$set('open', false)">
-                Cancelar
+                {{ trans('buttons.cancel') }}
             </x-secondary-button>
             <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save, image"
                 class="disabled:opacity-25">
-                Actualizar
+                {{ trans('buttons.update') }}
             </x-danger-button>
         </x-slot>
     </x-dialog-modal>

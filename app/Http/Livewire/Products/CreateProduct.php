@@ -16,7 +16,7 @@ class CreateProduct extends Component
     public $description;
     public $price;
     public $stock;
-    public $enable = false;
+    public $status = false;
     public $category_id;
     public $image;
 
@@ -26,7 +26,7 @@ class CreateProduct extends Component
         'price' => 'required|integer|digits_between: 4,10',
         'stock' => 'required|integer|min:1|max:100',
         'category_id' => 'required|integer',
-        'enable' => 'nullable',
+        'status' => 'nullable',
         'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ];
 
@@ -34,9 +34,9 @@ class CreateProduct extends Component
         'price' => 'precio',
         'name' => 'nombre',
         'description' => 'descripción',
-        'stock' => 'Stock',
-        'category_id' => 'categoría',
-        'enable' => 'estado',
+        'stock' => 'existencias',
+        'category_id' => 'categorías',
+        'status' => 'estado',
         'image' => 'imagen',
     ];
 
@@ -46,7 +46,7 @@ class CreateProduct extends Component
         $this->createProduct();
         $this->resetForm();
         $this->emitTo('products.products-list', 'render');
-        $this->emit('alert', 'Se ha creado el producto'); // esto es con el modal de sweetAlert
+        $this->emit('alert', trans('products.flash_message.successfully_created')); // esto es con el modal de sweetAlert
     }
 
     protected function createProduct()
@@ -58,7 +58,7 @@ class CreateProduct extends Component
             'description' => $this->description,
             'price' => $this->price,
             'stock' => $this->stock,
-            'enable' => $this->enable,
+            'status' => $this->status,
             'category_id' => $this->category_id,
             'image' => $this->image->storeAs('images/products', $imageName),
         ];
@@ -74,7 +74,7 @@ class CreateProduct extends Component
             'description',
             'price',
             'stock',
-            'enable',
+            'status',
             'category_id',
             'image', // no se está reseteando la imagen
         ]);

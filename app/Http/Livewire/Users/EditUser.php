@@ -21,11 +21,10 @@ class EditUser extends Component
         return [
             'user.name' => 'required|string|min:3|max:255',
             'user.email' => 'required|email|unique:users,email,'.$this->user->id,
-            'user.phone' => 'required|string|min:7|max:30|unique:users,phone,'.$this->user->id,
+            'user.phone' => 'nullable|string|min:7|max:30|unique:users,phone,'.$this->user->id,
             'user.birthday' => 'nullable|date_format:Y-m-d',
             'user.city' => 'nullable|string|min:3|max:50',
             'user.country' => 'nullable|string|min:3|max:56',
-            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
         ];
     }
 
@@ -38,6 +37,7 @@ class EditUser extends Component
     {
         $this->validate($this->rules());
 
+        // TODO: Quitar esta funcionalidad
         if ($this->image) {
             Storage::disk('public')->delete($this->user->profile_photo_path);
             $this->user->profile_photo_path = $this->image->store('images/profile-photos');
@@ -47,7 +47,7 @@ class EditUser extends Component
 
         $this->resetForm();
         $this->emitTo('users.users-list', 'render');
-        $this->emit('alert', 'El usuario se ha actualizado con éxito');
+        $this->emit('alert', trans('users.flash_message.successfully_updated'));
     }
 
     private function resetForm()

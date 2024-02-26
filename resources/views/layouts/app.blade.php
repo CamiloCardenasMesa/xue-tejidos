@@ -38,7 +38,7 @@
     <script>
         livewire.on('alert', function(message) {
             Swal.fire(
-                'Buen trabajo!',
+                '{{ trans('flashMessages.success') }}',
                 message,
                 'success'
             )

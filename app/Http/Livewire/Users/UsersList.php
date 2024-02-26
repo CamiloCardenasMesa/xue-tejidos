@@ -52,7 +52,7 @@ class UsersList extends Component
     public function destroy(User $user)
     {
         if (auth()->user()->id == $user->id) {
-            $this->errorMessage = 'Si deseas eliminar tu cuenta ve a tu prefil y luego a la sección eliminar cuenta';
+            $this->errorMessage = trans('users.flash_message.alert');
 
             return;
         }
