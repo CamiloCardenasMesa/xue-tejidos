@@ -1,7 +1,5 @@
 <div>
-    <div class="p-3 bg-gray-200 rounded-lg cursor-pointer" wire:click="$set('open', true)">
-        <x-edit-icon />
-    </div>
+    <x-button-action action='edit' wire:click="$set('open', true)" />
 
     <x-dialog-modal wire:model="open">
         <x-slot name="title">

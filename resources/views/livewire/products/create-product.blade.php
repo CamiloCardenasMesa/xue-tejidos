@@ -51,23 +51,23 @@
 
             <div class="mb-4">
                 <x-label value="{{ trans('categories.categories') }}" for="category" />
-                <select wire:model="category_id" name="category" id="category" class="w-full">
+                <x-select wire:model="category_id" name="category" id="category">
                     <option value="">{{ trans('products.placeholders.category_option') }}</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ trans('categories.' . $category->name) }}
                         </option>
                     @endforeach
-                </select>
+                </x-select>
                 <x-input-error for="category_id" />
             </div>
 
             <div class="mb-4">
                 <x-label value="{{ trans('products.status') }}" for="status" />
-                <select wire:model="status" name="status" id="status" class="w-full">
+                <x-select wire:model="status" name="status" id="status">
                     <option value="">{{ trans('products.status_option') }}</option>
                     <option value="1">{{ trans('products.enabled') }}</option>
                     <option value="0">{{ trans('products.disabled') }}</option>
-                </select>
+                </x-select>
                 <x-input-error for="status" />
             </div>
         </x-slot>
