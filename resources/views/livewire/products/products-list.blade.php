@@ -8,7 +8,7 @@
         @endif
 
         {{-- search bar --}}
-        <div class="flex items-center p-3 lg:p-6 gap-2">
+        <div class="flex items-center p-3 lg:p-6 gap-3">
             <x-input class="flex-1" type="text" wire:model="search"
                 placeholder="{{ trans('products.placeholders.search') }}" />
             <livewire:products.create-product />
@@ -100,10 +100,8 @@
                                 <td class="p-3 lg:pr-6">
                                     <section class="flex items-center">
                                         @livewire('products.edit-product', ['product' => $product], key($product->id))
-                                        <article class="p-3 ml-3 bg-gray-200 rounded-lg cursor-pointer"
-                                            wire:click="$emit('destroy', {{ $product->id }})">
-                                            <x-delete-icon />
-                                        </article>
+                                        <x-button-action action="delete"
+                                            wire:click="$emit('destroy', {{ $product->id }})" />
                                     </section>
                                 </td>
                             </tr>

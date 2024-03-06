@@ -1,7 +1,5 @@
 <div>
-    <div class="p-3 bg-gray-200 rounded-lg cursor-pointer" wire:click="$set('open', true)">
-        <x-edit-icon />
-    </div>
+    <x-button-action action='edit' wire:click="$set('open', true)" />
 
     <x-dialog-modal wire:model="open">
         <x-slot name="title">
@@ -58,22 +56,22 @@
 
             <div class="mb-4">
                 <x-label value="{{ trans('categories.categories') }}" for="category" />
-                <select wire:model="product.category_id" name="status" id="category" class="w-full">
+                <x-select wire:model="product.category_id" name="status" id="category">
                     <option value="">{{ trans('products.placeholders.category_option') }}</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ trans('categories.' . $category->name) }}</option>
                     @endforeach
-                </select>
+                </x-select>
                 <x-input-error for="product.category_id" />
             </div>
 
             <div class="mb-4">
                 <x-label value="{{ trans('products.status') }}" for="status" />
-                <select wire:model="product.status" name="status" id="status" class="w-full">
+                <x-select wire:model="product.status" name="status" id="status">
                     <option value="">{{ trans('products.status_option') }}</option>
                     <option value="1">{{ trans('products.enabled') }}</option>
                     <option value="0">{{ trans('products.disabled') }}</option>
-                </select>
+                </x-select>
                 <x-input-error for="product.status" />
             </div>
 
