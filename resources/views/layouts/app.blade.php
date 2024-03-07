@@ -25,11 +25,13 @@
 
     <div class="min-h-screen bg-gray-100">
         @livewire('navigation-menu')
-
-        <!-- Page Content -->
-        <main class="max-w-7xl mx-auto lg:px-8 lg:py-9">
-            {{ $slot }}
-        </main>
+        <div class="relative">
+            @include('admin-menu')
+            <!-- Page Content -->
+            <main class="max-w-7xl mx-auto lg:px-8 lg:py-9">
+                {{ $slot }}
+            </main>
+        </div>
     </div>
 
     @stack('modals')
