@@ -1,13 +1,7 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 shadow">
+<nav x-data="{ open: false }" class="bg-white/10 hover:bg-white/95 transition duration-300 ease-in-out shadow">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <!-- Logo -->
-            <div class="shrink-0 flex items-center">
-                <a href="{{ route('welcome') }}">
-                    <x-application-mark class="block h-9 w-auto" />
-                </a>
-            </div>
+        <div class="flex justify-between">
             <div class="flex">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -15,6 +9,12 @@
                         Admin
                     </x-nav-link>
                 </div>
+            </div>
+            <!-- Logo -->
+            <div class="shrink-0 flex items-center">
+                <a href="{{ route('welcome') }}">
+                    <x-application-mark class="block h-9 w-auto" />
+                </a>
             </div>
             <div class="hidden sm:flex sm:items-center">
                 <!-- Teams Dropdown -->
@@ -71,7 +71,7 @@
                         </div>
                     @endif
                 @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700">{{ trans('auth.login') }}</a>
                 @endauth
 
                 <!-- Settings Dropdown -->
@@ -82,7 +82,7 @@
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                     <button
                                         class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                        <img class="h-8 w-8 rounded-full object-cover"
+                                        <img class="h-12 w-12 rounded-full object-cover"
                                             src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                     </button>
                                 @else
@@ -130,7 +130,7 @@
                             </x-slot>
                         </x-dropdown>
                     @else
-                        <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a>
+                        <a href="{{ route('register') }}" class="text-sm text-gray-700">{{ trans('auth.register') }}</a>
                     @endauth
                 </div>
             </div>
@@ -232,10 +232,10 @@
         @else
             <div class="py-1 border-t border-gray-200">
                 <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                    login
+                    {{ trans('auth.login') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                    Register
+                    {{ trans('auth.register') }}
                 </x-responsive-nav-link>
             </div>
 
