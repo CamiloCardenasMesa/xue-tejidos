@@ -16,10 +16,16 @@
         <main>
             <!-- MUJERES-->
             <section>
+                <div class="flex items-center justify-center h-10 lg:h-20">
+                    <h3 class="w-full text-center lg:py-2 text-white bg-[#666666] text-lg lg:text-4xl">Mujer</h3>
+                </div>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-1 mt-1 h-[950px] cursor-pointer">
-                    <x-product-category-card imageA="croptop1.jpg" imageB="croptop2.jpg" title="Crop Tops" />
-                    <x-product-category-card imageA="sueter2.jpg" imageB="sueter1.jpg" title="Suéteres" />
-                    <x-product-category-card imageA="blusa1.jpg" imageB="blusa2.jpg" title="Blusas" />
+                    <x-product-category-card imageA="storage/images/guest/croptop1.jpg"
+                        imageB="storage/images/guest/croptop2.jpg" title="Crop Tops" />
+                    <x-product-category-card imageA="storage/images/guest/sueter2.jpg"
+                        imageB="storage/images/guest/sueter1.jpg" title="Suéteres" />
+                    <x-product-category-card imageA="storage/images/guest/blusa1.jpg"
+                        imageB="storage/images/guest/blusa2.jpg" title="Blusas" />
                 </div>
             </section>
 
@@ -29,9 +35,12 @@
                     <h3 class="w-full text-center lg:py-2 text-white bg-[#666666] text-lg lg:text-4xl">Hombre</h3>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-1 h-[950px] mt-1 cursor-pointer">
-                    <x-product-category-card imageA="sueterHombre2.jpg" imageB="sueterHombre1.jpg" title="Suéteres" />
-                    <x-product-category-card imageA="cuello2.jpg" imageB="cuello1.jpg" title="Buffs-Cuellos" />
-                    <x-product-category-card imageA="gorro2.jpg" imageB="gorro1.jpg" title="Gorros-Pasamontañas" />
+                    <x-product-category-card imageA="storage/images/guest/sueterHombre2.jpg"
+                        imageB="storage/images/guest/sueterHombre1.jpg" title="Suéteres" />
+                    <x-product-category-card imageA="storage/images/guest/cuello2.jpg"
+                        imageB="storage/images/guest/cuello1.jpg" title="Buffs-Cuellos" />
+                    <x-product-category-card imageA="storage/images/guest/gorro2.jpg"
+                        imageB="storage/images/guest/gorro1.jpg" title="Gorros-Pasamontañas" />
                 </div>
             </section>
         </main>
