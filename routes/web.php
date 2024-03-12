@@ -32,3 +32,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', config('jetstream.auth_sessi
         'show', 'index', 'destroy',
     ]);
 });
+
+Route::prefix('category')->get('/women', function () {
+    return view('buyer.women');
+})->name('women');

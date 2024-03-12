@@ -8,6 +8,9 @@
                     <x-nav-link href="{{ route('products') }}" :active="request()->routeIs('products')">
                         Admin
                     </x-nav-link>
+                    <x-nav-link href="{{ route('women') }}" :active="request()->routeIs('women')">
+                        Mujer
+                    </x-nav-link>
                 </div>
             </div>
             <!-- Logo -->

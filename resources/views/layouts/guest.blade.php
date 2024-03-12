@@ -17,6 +17,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body class="relative font-roboto">
@@ -36,6 +37,8 @@
             @include('layouts.footer')
         </div>
     </div>
+    @livewireScripts
+
 </body>
 
 </html>
