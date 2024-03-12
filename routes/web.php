@@ -33,6 +33,11 @@ Route::prefix('admin')->middleware(['auth:sanctum', config('jetstream.auth_sessi
     ]);
 });
 
-Route::prefix('category')->get('/women', function () {
-    return view('buyer.women');
-})->name('women');
+Route::prefix('category')->group(function () {
+    Route::get('/women', function () {
+        return view('buyer.women');
+    })->name('women');
+    Route::get('/men', function () {
+        return view('buyer.men');
+    })->name('men');
+});
