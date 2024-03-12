@@ -4,12 +4,15 @@
         <div class="flex justify-between">
             <div class="flex">
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden gap-4 sm:-my-px sm:flex">
                     <x-nav-link href="{{ route('products') }}" :active="request()->routeIs('products')">
                         Admin
                     </x-nav-link>
                     <x-nav-link href="{{ route('women') }}" :active="request()->routeIs('women')">
                         Mujer
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('men') }}" :active="request()->routeIs('men')">
+                        Hombre
                     </x-nav-link>
                 </div>
             </div>
@@ -240,8 +243,16 @@
                 <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                     {{ trans('auth.register') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('women') }}" :active="request()->routeIs('women')">
+                    Women
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('men') }}" :active="request()->routeIs('men')">
+                    Men
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('products') }}" :active="request()->routeIs('products')">
+                    admin
+                </x-responsive-nav-link>
             </div>
-
         @endauth
     </div>
 </nav>
