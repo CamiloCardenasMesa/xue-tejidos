@@ -23,15 +23,6 @@ class Product extends Model
         'category_id',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    // protected $appends = [
-    //     'image',
-    // ];
-
     public function category(): BelongsTo
     {
         return $this->belongsTo(category::class);
@@ -40,6 +31,11 @@ class Product extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    public function colors(): BelongsToMany
+    {
+        return $this->belongsToMany(Color::class);
     }
 
     // Relación muchos a muchos si un producto puede tener múltiples tags

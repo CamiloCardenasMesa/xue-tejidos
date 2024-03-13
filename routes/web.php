@@ -37,7 +37,10 @@ Route::prefix('category')->group(function () {
     Route::get('/women', function () {
         return view('buyer.women');
     })->name('women');
+
     Route::get('/men', function () {
         return view('buyer.men');
     })->name('men');
+
+    Route::get('product/{product}', \App\Http\Livewire\buyer\ProductShow::class)->name('product.show');
 });
