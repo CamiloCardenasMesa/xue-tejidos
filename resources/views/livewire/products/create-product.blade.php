@@ -62,7 +62,6 @@
                 </x-select>
                 <x-input-error for="category_id" />
             </div>
-
             <div class="mb-4">
                 <x-label value="{{ trans('products.status') }}" for="status" />
                 <x-select wire:model="status" name="status" id="status">
@@ -72,6 +71,14 @@
                 </x-select>
                 <x-input-error for="status" />
             </div>
+            <x-label value="{{ trans('products.available_colors') }}" />
+            @foreach($colors as $color)
+                <div>
+                    <input type="checkbox" id="color_{{ $color->id }}" value="{{ $color->id }}" wire:model="selectedColors">
+                    <label for="color_{{ $color->id }}">{{ $color->name }}</label>
+                </div>
+            @endforeach
+            <x-input-error for="selectedColors" />
         </x-slot>
 
         <x-slot name="footer">
