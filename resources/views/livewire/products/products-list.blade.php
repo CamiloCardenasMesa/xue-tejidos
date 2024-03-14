@@ -65,9 +65,14 @@
                         @foreach ($products as $product)
                             <tr class="even:bg-gray-100 odd:bg-white text-gray-700">
                                 <td class="py-2 lg:py-4 pl-3 md:p-3 lg:px-6">
-                                    <img class="w-16 h-16 rounded-full object-cover"
-                                        src="{{ asset('storage/' . $product->image) }}"
-                                        alt="{{ 'image of ' . $product->name }}">
+                                    @if ($product->images)
+                                        <img class="w-16 h-16 rounded-full object-cover"
+                                            src="{{ asset('storage/' . $product->images[0]) }}"
+                                            alt="{{ 'image of ' . $product->name }}">
+                                    @else
+                                        <img class="w-16 h-16 rounded-full object-cover"
+                                            src="{{ asset('storage/images/product_image.png') }}" alt="">
+                                    @endif
                                 </td>
                                 <td class="p-3 font-bold">
                                     <div>
