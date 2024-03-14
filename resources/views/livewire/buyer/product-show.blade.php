@@ -2,11 +2,13 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 overflow-hidden bg-white">
         <figure class="col-span-2">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
-                {{-- TODO: foreach con las imágenes disponibles del producto --}}
-                <img class="object-cover w-full h-full" src="{{ asset('storage/' . $product->image) }}" alt="">
-                <img class="object-cover w-full h-full" src="{{ asset('storage/' . $product->image) }}" alt="">
-                <img class="object-cover w-full h-full" src="{{ asset('storage/' . $product->image) }}" alt="">
-                <img class="object-cover w-full h-full" src="{{ asset('storage/' . $product->image) }}" alt="">
+                @if ($product->images)
+                    @foreach ($product->images as $image)
+                        <img class="object-cover w-full h-full" src="{{ asset('storage/' . $image) }}" alt="">
+                    @endforeach
+                @else
+                    <p>No hay imágenes para este producto</p>
+                @endif
             </div>
         </figure>
         <section>
