@@ -13,7 +13,7 @@ class EditProduct extends Component
     use WithFileUploads;
 
     public $open = false;
-    public $image;
+    public $images = [];
     public $product;
 
     protected $rules = [
@@ -23,7 +23,7 @@ class EditProduct extends Component
         'product.stock' => 'required|integer|min:1|max:100|',
         'product.category_id' => 'required',
         'product.status' => 'required',
-        'image' => 'nullable|image|max:2048|mimes:jpg,jpeg,png',
+        'images.*' => 'nullable|image|max:2048|mimes:jpg,jpeg,png',
     ];
 
     protected $validationAttributes = [
@@ -33,7 +33,7 @@ class EditProduct extends Component
         'stock' => 'Stock',
         'category_id' => 'categoría',
         'status' => 'estado',
-        'image' => 'imagen',
+        'images' => 'imágenes',
     ];
 
     public function mount(Product $product)
@@ -45,9 +45,12 @@ class EditProduct extends Component
     {
         $this->validate();
 
-        if ($this->image) {
-            Storage::disk('public')->delete($this->product->image);
-            $this->product->image = $this->image->store('images/products');
+        if ($this->images) {
+            Storage::disk('public')->delete($this->product->images);
+            foreach ($this->images as $image) {
+                $imageName = time() . '-' . $image->getClientOriginalName();
+                $imagePaths[] = $image->storeAs('images/products', $imageName, 'public');
+            }
         }
 
         $this->product->save();
@@ -66,7 +69,7 @@ class EditProduct extends Component
     {
         $this->reset([
             'open',
-            'image',
+            'images',
         ]);
     }
 

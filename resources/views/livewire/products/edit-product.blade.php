@@ -13,21 +13,21 @@
             </div>
 
             {{-- refactorizar esta validación de la imagen --}}
-            @if ($image)
-                @if ($errors->has('image'))
-                    <div class="text-red-500">{{ $errors->first('image') }}</div>
-                @elseif ($image->isValid() && in_array($image->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']))
+            {{-- @if ($images)
+                @if ($errors->has('images'))
+                    <div class="text-red-500">{{ $errors->first('images') }}</div>
+                @elseif ($images->isValid() && in_array($images->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']))
                     <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="Previsualización de la imagen">
                 @else
                     <div class="text-red-500">{{ trans('flashMessages.image_error') }}</div>
                 @endif
             @else
-                <img class="mb-4" src="{{ $product->image ? Storage::url($product->image) : '' }}"
+                <img class="mb-4" src="{{ $product->images ? Storage::url($product->images) : '' }}"
                     alt="Imagen del producto">
-            @endif
+            @endif --}}
 
             <div class="mb-4">
-                <input type="file" wire:model="image" />
+                <input type="file" wire:model="images" multiple />
             </div>
 
             <div class="mb-4">
@@ -81,7 +81,7 @@
             <x-secondary-button wire:click="$set('open', false)">
                 {{ trans('buttons.cancel') }}
             </x-secondary-button>
-            <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save, image"
+            <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save, images"
                 class="disabled:opacity-25">
                 {{ trans('buttons.update') }}
             </x-danger-button>

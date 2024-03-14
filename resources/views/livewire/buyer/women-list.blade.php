@@ -8,7 +8,7 @@
     @if ($products->count())
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-1 bg-white">
             @foreach ($products as $product)
-                <div class="border border-black/30">
+                <div class="flex flex-col justify-between border border-black/30">
                     <div class="cursor-pointer hover:brightness-90 transition ease-in-out duration-200"
                         style="height: 660px;">
                         <a href="{{ route('product.show', $product) }}">
