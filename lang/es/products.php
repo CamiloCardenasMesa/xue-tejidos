@@ -33,4 +33,6 @@ return [
         'successfully_created' => 'El producto ha sido creado correctamente',
         'successfully_updated' => 'El producto se ha actualizado correctamente',
     ],
+    'available_colors' => 'Colores disponibles',
+
 ];

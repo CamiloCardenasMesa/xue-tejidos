@@ -33,4 +33,5 @@ return [
         'successfully_created' => 'Product created successfuly',
         'successfully_updated' => 'Product updated successfuly',
     ],
+    'available_colors' => 'Available colors',
 ];
