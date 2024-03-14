@@ -19,7 +19,7 @@ class Product extends Model
         'price',
         'stock',
         'status',
-        'image',
+        'images',
         'category_id',
     ];
 
@@ -38,7 +38,11 @@ class Product extends Model
         return $this->belongsToMany(Color::class);
     }
 
-    // Relación muchos a muchos si un producto puede tener múltiples tags
+    public function getImagesAttribute($value)
+    {
+        return json_decode($value);
+    }
+
     // public function tags(): BelongsToMany
     // {
     //     return $this->belongsToMany(Tag::class);
