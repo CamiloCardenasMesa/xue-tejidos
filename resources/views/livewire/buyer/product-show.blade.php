@@ -7,7 +7,8 @@
                         <img class="object-cover w-full h-full" src="{{ asset('storage/' . $image) }}" alt="">
                     @endforeach
                 @else
-                    <p>No hay imágenes para este producto</p>
+                    <img class="object-cover w-full h-full" src="{{ asset('storage/images/product_image.png') }}"
+                        alt="">
                 @endif
             </div>
         </figure>

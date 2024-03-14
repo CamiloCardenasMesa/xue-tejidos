@@ -9,11 +9,17 @@
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-1 bg-white">
             @foreach ($products as $product)
                 <div class="border border-black/30">
-                    <div class="cursor-pointer hover:brightness-90 transition ease-in-out duration-200" style="height: 660px;">
+                    <div class="cursor-pointer hover:brightness-90 transition ease-in-out duration-200"
+                        style="height: 660px;">
                         <a href="{{ route('product.show', $product) }}">
-                            <img class="object-cover w-full h-full" 
-                                src="{{ asset('storage/' . $product->image) }}"
-                                alt="{{ 'image of ' . $product->name }}" />
+                            @if ($product->images)
+                                <img class="object-cover w-full h-full"
+                                    src="{{ asset('storage/' . $product->images[0]) }}"
+                                    alt="{{ 'image of ' . $product->name }}" />
+                            @else
+                                <img class="object-cover w-full h-full"
+                                    src="{{ asset('storage/images/product_image.png') }}" alt="">
+                            @endif
                         </a>
                     </div>
                     <div class="relative grid grid-cols-4">
