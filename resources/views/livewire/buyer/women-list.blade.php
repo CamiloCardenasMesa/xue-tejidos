@@ -6,9 +6,9 @@
         </div>
     </div>
     @if ($products->count())
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-1 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 bg-white">
             @foreach ($products as $product)
-                <div class="flex flex-col justify-between border border-black/30">
+                <div class="flex flex-col justify-between">
                     <div class="cursor-pointer hover:brightness-90 transition ease-in-out duration-200"
                         style="height: 660px;">
                         <a href="{{ route('product.show', $product) }}">
@@ -22,17 +22,18 @@
                             @endif
                         </a>
                     </div>
-                    <div class="relative grid grid-cols-4">
-                        <div class="col-span-3 px-3 pt-3 pb-6">
+                    <section class="mb-10 mt-2">
+                        <div class="flex flex-col items-center justify-center">
                             <h1 class="font-medium">{{ $product->name }}</h1>
                             <p>$ {{ $product->price }}</p>
                         </div>
-                        <div
-                            class="border-l border-black/30 hover:bg-black hover:text-white transition ease-in-out duration-300 ">
-                            <a class="flex items-center justify-center h-full w-full" href="#">Personalizar</a>
-                            {{-- @include('icons.cart-icon') --}}
+                        <div class="flex items-center mt-2 justify-center gap-1">
+                            @foreach ( $product->colors as $color )
+                                <div class="w-3 h-3" style="background-color:  {{ $color->hex_code }} ">
+                                </div>
+                            @endforeach
                         </div>
-                    </div>
+                    </section>
                 </div>
             @endforeach
         </div>
