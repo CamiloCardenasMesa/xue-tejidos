@@ -34,6 +34,9 @@
                                     <x-sort-icon :field="'name'" :sort="$sort" :direction="$direction" />
                                 </div>
                             </th>
+                            <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                {{ trans('products.available_colors') }}
+                            </th>
                             <th wire:click="order('price')" scope="col"
                                 class="px-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
                                 <div class="flex items-center justify-between">
@@ -81,6 +84,16 @@
                                     <div class="text-xs text-gray-600 font-light">
                                         {{ $product->description }}
                                     </div>
+                                </td>
+                                <td class="p-3">
+                                    @foreach ($product->colors as $color )
+                                    <div class="flex items-center gap-1 text-xs">
+                                        <div class="w-3 h-3 rounded-full" style="background-color: {{ $color->hex_code }}">
+                                        </div>
+                                        <p>{{ $color->name }}</p>
+
+                                    </div>
+                                    @endforeach
                                 </td>
                                 <td class="px-3 font-bold">
                                     ${{ $product->price }}
