@@ -18,7 +18,7 @@ class CreateProduct extends Component
     public $stock;
     public $status = false;
     public $category_id;
-    public $image;
+    public $images = [];
 
     protected $rules = [
         'name' => 'required|min:3|max:70',
@@ -27,7 +27,7 @@ class CreateProduct extends Component
         'stock' => 'required|integer|min:1|max:100',
         'category_id' => 'required|integer',
         'status' => 'nullable',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ];
 
     protected $validationAttributes = [
@@ -37,7 +37,7 @@ class CreateProduct extends Component
         'stock' => 'existencias',
         'category_id' => 'categorías',
         'status' => 'estado',
-        'image' => 'imagen',
+        'images' => 'imagenes',
     ];
 
     public function save()
@@ -51,7 +51,12 @@ class CreateProduct extends Component
 
     protected function createProduct()
     {
-        $imageName = time().'-'.$this->image->getClientOriginalName();
+        $imagePaths = [];
+
+        foreach ($this->images as $image) {
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $imagePaths[] = $image->storeAs('images/products', $imageName, 'public');
+        }
 
         $productData = [
             'name' => $this->name,
@@ -60,7 +65,8 @@ class CreateProduct extends Component
             'stock' => $this->stock,
             'status' => $this->status,
             'category_id' => $this->category_id,
-            'image' => $this->image->storeAs('images/products', $imageName),
+            // 'image' => $this->image->storeAs('images/products', $imageName),
+            'images' => json_encode($imagePaths), // Almacenar las rutas de las imágenes como JSON
         ];
 
         return Product::create($productData);
@@ -76,7 +82,7 @@ class CreateProduct extends Component
             'stock',
             'status',
             'category_id',
-            'image', // no se está reseteando la imagen
+            'images', // no se está reseteando la imagen
         ]);
     }
 

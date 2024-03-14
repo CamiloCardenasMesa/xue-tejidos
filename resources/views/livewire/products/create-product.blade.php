@@ -10,19 +10,21 @@
 
         <x-slot name="content">
             {{-- alert message for image loading --}}
-            <div wire:loading wire:target="image"
+            <div wire:loading wire:target="images"
                 class="flex flex-col items-center justify-center mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-4 rounded relative">
                 <strong class="font-bold">{{ trans('flashMessages.loading_image') }}</strong>
                 <span class="block sm:inline">{{ trans('flashMessages.please_wait') }}</span>
             </div>
 
-            @if ($image)
-                <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="{{ trans('products.alt_attributes.image') }}">
+            @if ($images)
+                @foreach ($images as $index => $image)
+                    <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="Image {{ $index + 1 }}" />
+                @endforeach
             @endif
 
             <div class="mb-4">
-                <input type="file" wire:model="image" />
-                <x-input-error for="image" />
+                <input type="file" wire:model="images" multiple />
+                <x-input-error for="images" />
             </div>
 
             <div class="mb-4">
@@ -76,7 +78,7 @@
             <x-secondary-button wire:click="$set('open', false)">
                 {{ trans('buttons.cancel') }}
             </x-secondary-button>
-            <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save, image"
+            <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save, images"
                 class="disabled:opacity-25">
                 {{ trans('buttons.create') }}
             </x-danger-button>
