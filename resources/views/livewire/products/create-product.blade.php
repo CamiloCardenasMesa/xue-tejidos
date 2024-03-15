@@ -17,9 +17,18 @@
             </div>
 
             @if ($images)
-                @foreach ($images as $index => $image)
-                    <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="Image {{ $index + 1 }}" />
-                @endforeach
+                <div
+                    class="w-full flex items-center text-sm lg:text-base justify-center border-x border-t border-black/30 py-2 lg:py-2">
+                    <h4>Fotos nuevas del producto</h4>
+                </div>
+                <div class="mb-4 border border-black/30">
+                    <div class="grid grid-cols-2 gap-1 lg:grid-cols-4 w-full">
+                        @foreach ($images as $index => $image)
+                            <img class="object-cover" src="{{ $image->temporaryUrl() }}"
+                                alt="Image {{ $index + 1 }}" />
+                        @endforeach
+                    </div>
+                </div>
             @endif
 
             <div class="mb-4">
@@ -72,9 +81,10 @@
                 <x-input-error for="status" />
             </div>
             <x-label value="{{ trans('products.available_colors') }}" />
-            @foreach($colors as $color)
+            @foreach ($colors as $color)
                 <div>
-                    <input type="checkbox" id="color_{{ $color->id }}" value="{{ $color->id }}" wire:model="selectedColors">
+                    <input type="checkbox" id="color_{{ $color->id }}" value="{{ $color->id }}"
+                        wire:model="selectedColors">
                     <label for="color_{{ $color->id }}">{{ $color->name }}</label>
                 </div>
             @endforeach
