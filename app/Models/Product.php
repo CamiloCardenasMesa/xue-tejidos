@@ -40,7 +40,7 @@ class Product extends Model
 
     public function getImagesAttribute($value)
     {
-        return json_decode($value);
+        return is_string($value) ? json_decode($value, true) : $value;
     }
 
     // public function tags(): BelongsToMany

@@ -17,6 +17,8 @@ class EditProduct extends Component
     public $images = [];
     public $product;
     public $selectedColors = [];
+    public $confirmingImageDeletion = false;
+    public $imageToDeleteIndex;
 
     protected $rules = [
         'product.name' => 'required|min:3|max:70',
@@ -51,20 +53,54 @@ class EditProduct extends Component
         $this->validate();
 
         if ($this->images) {
-            Storage::disk('public')->delete($this->product->images);
+            $imagePaths = [];
             foreach ($this->images as $image) {
                 $imageName = time() . '-' . $image->getClientOriginalName();
                 $imagePaths[] = $image->storeAs('images/products', $imageName, 'public');
             }
+            $this->product->images = array_merge($this->product->images ?? [], $imagePaths);
         }
 
-        $this->saveSelectedColors($this->product->id); 
+        $this->saveSelectedColors();
         $this->product->save();
 
         $this->resetForm();
         $this->emitTo('products.products-list', 'render');
         $this->emit('alert', trans('products.flash_message.successfully_updated'));
     }
+
+    public function deleteImage($index)
+    {
+        $this->confirmingImageDeletion = true;
+        $this->imageToDeleteIndex = $index;
+    }
+    
+    public function confirmImageDeletion()
+    {
+        // Obtener la ruta de la imagen a eliminar
+        $imagePath = $this->product->images[$this->imageToDeleteIndex];
+    
+        // Eliminar la imagen del sistema de archivos
+        Storage::disk('public')->delete($imagePath);
+    
+        // Crear un nuevo array de imágenes excluyendo la imagen que se eliminará
+        $images = collect($this->product->images)->except($this->imageToDeleteIndex)->values()->all();
+    
+        // Asignar el nuevo array de imágenes al producto
+        $this->product->images = $images;
+    
+        // Guardar los cambios en la base de datos
+        $this->product->save();
+    
+        // Reiniciar las variables de estado
+        $this->confirmingImageDeletion = false;
+        $this->imageToDeleteIndex = null;
+    }
+    
+    public function cancelImageDeletion()
+    {
+        $this->confirmingImageDeletion = false;
+    }    
 
     public function saveSelectedColors()
     {
