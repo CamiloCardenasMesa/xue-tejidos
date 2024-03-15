@@ -28,7 +28,7 @@
                             <p>$ {{ $product->price }}</p>
                         </div>
                         <div class="flex items-center mt-2 justify-center gap-1">
-                            @foreach ( $product->colors as $color )
+                            @foreach ($product->colors as $color)
                                 <div class="w-3 h-3" style="background-color:  {{ $color->hex_code }} ">
                                 </div>
                             @endforeach

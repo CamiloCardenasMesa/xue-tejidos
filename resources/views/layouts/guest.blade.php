@@ -23,13 +23,12 @@
 <body class="relative font-roboto">
     <div class="flex flex-col min-h-screen w-full">
         <!-- header-->
-        <div class="h-20"></div>
-        <div class="fixed top-0 left-0 right-0 z-10">
+        <div class="h-20 fixed w-full z-10">
             @include('navigation-menu')
         </div>
 
         <!--main -->
-        <div class="flex flex-col min-h-full flex-grow bg-gray-100">
+        <div class="flex mt-20 flex-col min-h-full flex-grow bg-gray-100">
             {{ $slot }}
         </div>
         <!--footer-->

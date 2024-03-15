@@ -1,6 +1,6 @@
 <div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 overflow-hidden bg-white">
-        <figure class="col-span-2">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 bg-white">
+        <figure class="col-span-2 overflow-y-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
                 @if ($product->images)
                     @foreach ($product->images as $image)
@@ -12,7 +12,7 @@
                 @endif
             </div>
         </figure>
-        <section>
+        <section class="sticky top-20 h-screen">
             <div class="h-full m-6 lg:m-12">
                 <header class="flex mb-6 justify-between">
                     <h1 class="font-regular text-xl lg:text-2xl w-1/2">{{ $product->name }}</h1>
