@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Products;
 
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -15,6 +16,7 @@ class EditProduct extends Component
     public $open = false;
     public $images = [];
     public $product;
+    public $selectedColors = [];
 
     protected $rules = [
         'product.name' => 'required|min:3|max:70',
@@ -23,6 +25,7 @@ class EditProduct extends Component
         'product.stock' => 'required|integer|min:1|max:100|',
         'product.category_id' => 'required',
         'product.status' => 'required',
+        'selectedColors' => 'required',
         'images.*' => 'nullable|image|max:2048|mimes:jpg,jpeg,png',
     ];
 
@@ -34,11 +37,13 @@ class EditProduct extends Component
         'category_id' => 'categoría',
         'status' => 'estado',
         'images' => 'imágenes',
+        'selectedColors' => 'Colores disponibles',
     ];
 
     public function mount(Product $product)
     {
         $this->product = $product;
+        $this->selectedColors = $product->colors->pluck('id')->toArray();
     }
 
     public function save()
@@ -53,11 +58,17 @@ class EditProduct extends Component
             }
         }
 
+        $this->saveSelectedColors($this->product->id); 
         $this->product->save();
 
         $this->resetForm();
         $this->emitTo('products.products-list', 'render');
         $this->emit('alert', trans('products.flash_message.successfully_updated'));
+    }
+
+    public function saveSelectedColors()
+    {
+        $this->product->colors()->sync($this->selectedColors);
     }
 
     public function updated($propertyName)
@@ -76,7 +87,7 @@ class EditProduct extends Component
     public function render()
     {
         $categories = Category::all();
-
-        return view('livewire.products.edit-product', compact('categories'));
+        $colors = Color::all();
+        return view('livewire.products.edit-product', compact('categories', 'colors'));
     }
 }
