@@ -52,7 +52,7 @@ class EditProduct extends Component
     {
         $this->validate();
 
-        if ($this->images) {
+        if (!empty($this->images)) {
             $imagePaths = [];
             foreach ($this->images as $image) {
                 $imageName = time() . '-' . $image->getClientOriginalName();
@@ -79,13 +79,13 @@ class EditProduct extends Component
     {
         // Obtener la ruta de la imagen a eliminar
         $imagePath = $this->product->images[$this->imageToDeleteIndex];
-    
+        
         // Eliminar la imagen del sistema de archivos
         Storage::disk('public')->delete($imagePath);
-    
+
         // Crear un nuevo array de imágenes excluyendo la imagen que se eliminará
         $images = collect($this->product->images)->except($this->imageToDeleteIndex)->values()->all();
-    
+
         // Asignar el nuevo array de imágenes al producto
         $this->product->images = $images;
     
@@ -95,12 +95,7 @@ class EditProduct extends Component
         // Reiniciar las variables de estado
         $this->confirmingImageDeletion = false;
         $this->imageToDeleteIndex = null;
-    }
-    
-    public function cancelImageDeletion()
-    {
-        $this->confirmingImageDeletion = false;
-    }    
+    }  
 
     public function saveSelectedColors()
     {

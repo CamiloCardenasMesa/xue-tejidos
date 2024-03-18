@@ -10,8 +10,8 @@ class ProductFactory extends Factory
 {
     public function definition(): array
     {
-        $productImage1 = storage_path('app/public/images/product_image.jpg');
-        $productImage2 = storage_path('app/public/images/product_image2.jpg');
+        $productImage1 = storage_path('app/public/images/product_image2.jpg');
+        $productImage2 = storage_path('app/public/images/product_image.jpg');
         
         $directory = 'images/products';
 
