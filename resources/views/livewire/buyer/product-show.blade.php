@@ -86,10 +86,6 @@
                             @include('icons.store-icon')
                             Disponibilidad en tienda física
                         </div>
-                        <div class="flex gap-2 py-4 w-full border-y border-y-1 border-black/30">
-                            @include('icons.question-icon')
-                            Preguntas frecuentes
-                        </div>
                     </section>
                 </footer>
             </div>
