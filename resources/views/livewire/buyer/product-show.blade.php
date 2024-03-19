@@ -1,6 +1,6 @@
 <div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 bg-white">
-        <figure class="col-span-2 overflow-y-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
+        <figure class="col-span-2 overflow-y-scroll no-scrollbar">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
                 @if ($product->images)
                     @foreach ($product->images as $image)
@@ -12,8 +12,8 @@
                 @endif
             </div>
         </figure>
-        <section class="sticky top-20 h-screen">
-            <div class="h-full m-6 lg:m-12">
+        <section class="lg:sticky lg:top-20 lg:h-screen md:top-20 md:h-auto lg:overflow-y-scroll no-scrollbar">
+            <div class="h-min m-6 lg:m-12">
                 <header class="flex mb-6 justify-between">
                     <h1 class="font-regular text-xl lg:text-2xl w-1/2">{{ $product->name }}</h1>
                     <h2 class="font-medium text-lg lg:text-xl">$ {{ $product->price }}</h2>
@@ -39,7 +39,7 @@
                         <h1>Descripción</h1>
                         <p>{{ $product->description }}</p>
                     </div>
-                    <div class="flex flex-col mt-6 lg:mt-12">
+                    <div class="flex flex-col mt-6 lg:mt-10">
                         <a class="underline underline-offset-4 cursor-pointer">Guía de tallas</a>
                         <div class="flex mt-1 lg:mt-2 w-full">
                             <x-select>
@@ -65,33 +65,67 @@
                     </div>
                 </main>
                 <footer>
-                    <section class="grid grid-rows-4 mt-6 lg:mt-12">
-                        <div class="flex gap-2 py-4 w-full border-y border-y-1 border-black/30">
-                            @include('icons.leaf-icon')
-                            Materiales y composición
-                        </div>
-                        <div class="flex gap-2 py-4 w-full border-b border-b-1 border-black/30">
-                            @include('icons.wash-icon')
-                            Cuidados
-                        </div>
-                        <div class="flex gap-2 py-4 w-full border-b border-y-1 border-black/30">
-                            @include('icons.send-icon')
-                            Envíos y devoluciones
-                        </div>
-                        <div class="flex gap-2 py-4 w-full border-b border-y-1 border-black/30">
-                            @include('icons.timer-icon')
-                            Tiempos de entrega
-                        </div>
-                        <div class="flex gap-2 py-4 w-full">
-                            @include('icons.store-icon')
-                            Disponibilidad en tienda física
-                        </div>
+                    <section class="grid mt-6 lg:mt-12">
+                        <x-accordion title="Materiales" border-class="border-y border-y-1">
+                            <x-slot name="icon">
+                                @include('icons.leaf-icon')
+                            </x-slot>
+                            <x-slot name="content">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quas esse sequi quos
+                                    fugit, porro officiis, maxime maiores error aperiam sapiente explicabo molestiae
+                                    veniam accusantium repellat obcaecati voluptate tempora natus.</p>
+                            </x-slot>
+                        </x-accordion>
+
+                        <x-accordion title="Cuidados" border-class="border-b border-b-1">
+                            <x-slot name="icon">
+                                @include('icons.wash-icon')
+                            </x-slot>
+                            <x-slot name="content">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quas esse sequi quos
+                                    fugit, porro officiis, maxime maiores error aperiam sapiente explicabo molestiae
+                                    veniam accusantium repellat obcaecati voluptate tempora natus.</p>
+                            </x-slot>
+                        </x-accordion>
+
+                        <x-accordion title="Envíos y devoluciones" border-class="border-b border-y-1">
+                            <x-slot name="icon">
+                                @include('icons.send-icon')
+                            </x-slot>
+                            <x-slot name="content">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quas esse sequi quos
+                                    fugit, porro officiis, maxime maiores error aperiam sapiente explicabo molestiae
+                                    veniam accusantium repellat obcaecati voluptate tempora natus.</p>
+                            </x-slot>
+                        </x-accordion>
+
+                        <x-accordion title="Tiempos de entrega" border-class="border-b border-y-1">
+                            <x-slot name="icon">
+                                @include('icons.timer-icon')
+                            </x-slot>
+                            <x-slot name="content">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quas esse sequi quos
+                                    fugit, porro officiis, maxime maiores error aperiam sapiente explicabo molestiae
+                                    veniam accusantium repellat obcaecati voluptate tempora natus.</p>
+                            </x-slot>
+                        </x-accordion>
+
+                        <x-accordion title="Disponibilidad en tienda física" border-class="border-b border-y-1">
+                            <x-slot name="icon">
+                                @include('icons.store-icon')
+                            </x-slot>
+                            <x-slot name="content">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quas esse sequi quos
+                                    fugit, porro officiis, maxime maiores error aperiam sapiente explicabo molestiae
+                                    veniam accusantium repellat obcaecati voluptate tempora natus.</p>
+                            </x-slot>
+                        </x-accordion>
                     </section>
                 </footer>
             </div>
         </section>
     </div>
-    <section>
+    <section class="bg-white">
         <h4>También te puede gustar</h4>
         {{-- <div class="grid grid-cols-1 lg:grid-cols-4 gap-1 bg-white">
             @foreach ($products as $product)
