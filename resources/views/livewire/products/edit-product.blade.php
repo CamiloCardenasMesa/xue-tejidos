@@ -45,7 +45,7 @@
                         class="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-lg border border-black/30">
                         <div class="flex w-full justify-between">
                             <h3 class="text-2xl font-bold text-red-600">{{ __('Confirmar Eliminación de Imagen') }}</h3>
-                            <button wire:click="cancelImageDeletion"
+                            <button wire:click="$set('confirmingImageDeletion', false)"
                                 class="text-3xl absolute top-0 right-2 text-gray-500">&times;</button>
                         </div>
                         <p class="my-4">
@@ -66,7 +66,7 @@
                     class="w-full flex items-center text-sm lg:text-base justify-center border-x border-t border-black/30 py-2 lg:py-2">
                     <h4>Fotos nuevas del producto</h4>
                 </div>
-                <div class="mb-4 border border-black/30">
+                <div class="border border-black/30">
                     <div class="grid grid-cols-2 gap-1 lg:grid-cols-4 w-full">
                         @foreach ($images as $index => $image)
                             <img class="object-cover" src="{{ $image->temporaryUrl() }}"
@@ -76,8 +76,16 @@
                 </div>
             @endif
 
+            @if (count($images))
+                <div class="flex justify-end">
+                    <button class="px-4 py-2 mb-2 bg-red-500 text-white rounded hover:bg-red-600"
+                        wire:click="$set('images', [])">Cancelar</button>
+                </div>
+            @endif
+
             <div class="mb-4">
-                <input type="file" wire:model="images" multiple />
+                <input type="file" wire:model="images" multiple
+                    @if (count($images)) hidden disabled @endif />
                 <x-input-error for="images" />
             </div>
 
