@@ -19,7 +19,7 @@
             @if ($images)
                 <div
                     class="w-full flex items-center text-sm lg:text-base justify-center border-x border-t border-black/30 py-2 lg:py-2">
-                    <h4>Fotos nuevas del producto</h4>
+                    <h4>Fotos del producto</h4>
                 </div>
                 <div class="mb-4 border border-black/30">
                     <div class="grid grid-cols-2 gap-1 lg:grid-cols-4 w-full">
@@ -31,8 +31,16 @@
                 </div>
             @endif
 
+            @if (count($images))
+                <div class="flex justify-end">
+                    <button class="px-4 py-2 mb-2 bg-red-500 text-white rounded hover:bg-red-600"
+                        wire:click="$set('images', [])">Cancelar</button>
+                </div>
+            @endif
+
             <div class="mb-4">
-                <input type="file" wire:model="images" multiple />
+                <input type="file" wire:model="images" multiple
+                    @if (count($images)) hidden disabled @endif />
                 <x-input-error for="images" />
             </div>
 
