@@ -18,26 +18,20 @@ class CreateUser extends Component
     public $birthday;
     public $phone;
     public $city;
+    public $address;
     public $country;
-    public $image;
-    public $imageId;
 
     protected $rules = [
-        'name' => 'required|min:3|max:70',
+        'name' => 'required|string|min:3|max:70',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:8',
         'confirmPassword' => 'required|same:password',
         'birthday' => 'nullable|date_format:Y-m-d',
-        'phone' => 'nullable|string|min:7|max:20',
+        'phone' => 'nullable|string|min:7|max:30',
         'city' => 'nullable|string|min:3|max:50',
         'country' => 'nullable|string|min:3|max:56',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'address' => 'nullable|string|min:5|max:100',
     ];
-
-    public function mount()
-    {
-        $this->imageId = rand();
-    }
 
     public function save()
     {
@@ -46,9 +40,8 @@ class CreateUser extends Component
         $this->createUser();
 
         $this->resetForm();
-        $this->imageId = rand();
         $this->emitTo('users.users-list', 'render');
-        $this->emit('alert', 'Se ha creado el usuario');
+        $this->emit('alert', trans('users.flash_message.successfully_created'));
     }
 
     protected function createUser()
@@ -60,20 +53,11 @@ class CreateUser extends Component
             'birthday' => $this->birthday,
             'phone' => $this->phone,
             'city' => $this->city,
+            'address' => $this->address,
             'country' => $this->country,
-            'profile_photo_path' => $this->uploadImage(),
         ];
 
         return User::create($userData);
-    }
-
-    protected function uploadImage()
-    {
-        if ($this->image) {
-            return $this->image->store('images/profile-photos');
-        }
-
-        return null;
     }
 
     public function updated($propertyName)
@@ -93,6 +77,7 @@ class CreateUser extends Component
             'phone',
             'password',
             'city',
+            'address',
             'country',
         ]);
     }

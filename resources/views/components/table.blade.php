@@ -1,4 +1,3 @@
-<div class="border shadow-sm rounded-lg bg-gray-100">
+<div class="border shadow-sm bg-gray-100">
     {{ $slot }}
 </div>
-

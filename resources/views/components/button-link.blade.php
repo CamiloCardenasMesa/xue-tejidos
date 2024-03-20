@@ -1,3 +1,3 @@
-<a {{ $attributes->merge(['class' => 'flex text-center justify-center text-white/70 bg-gradient-to-b from-cyan-500 to-slate-800 rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:to-blue-500 hover:text-white transition ease-in-out duration-200']) }}>
+<a {{ $attributes->merge(['class' => 'flex text-center justify-center items-center cursor-pointer p-4 bg-white border border-1 border-black/30 font-semibold text-xs text-black uppercase tracking-widest hover:bg-black hover:text-white transition ease-in-out duration-200']) }}>
     {{ $slot }}
 </a>

@@ -3,22 +3,11 @@
 use App\Http\Controllers\ThreadController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+Route::prefix('admin')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/products', function () {
         return view('products');
     })->name('products');
@@ -35,11 +24,23 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         return view('admin.design');
     })->name('design');
 
-    Route::get('/forum', \App\Http\Livewire\ShowThreads::class )->name('forum');
-    
-    Route::get('/thread/{thread}', \App\Http\Livewire\ShowThread::class )->name('thread');
+    Route::get('/forum', \App\Http\Livewire\ShowThreads::class)->name('forum');
+
+    Route::get('/thread/{thread}', \App\Http\Livewire\ShowThread::class)->name('thread');
 
     Route::resource('threads', ThreadController::class)->except([
-        'show', 'index', 'destroy'
+        'show', 'index', 'destroy',
     ]);
+});
+
+Route::prefix('category')->group(function () {
+    Route::get('/women', function () {
+        return view('buyer.women');
+    })->name('women');
+
+    Route::get('/men', function () {
+        return view('buyer.men');
+    })->name('men');
+
+    Route::get('product/{product}', \App\Http\Livewire\buyer\ProductShow::class)->name('product.show');
 });

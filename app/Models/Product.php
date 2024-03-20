@@ -18,19 +18,10 @@ class Product extends Model
         'description',
         'price',
         'stock',
-        'enable',
-        'image',
+        'status',
+        'images',
         'category_id',
     ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    // protected $appends = [
-    //     'image',
-    // ];
 
     public function category(): BelongsTo
     {
@@ -42,7 +33,16 @@ class Product extends Model
         return $this->hasMany(User::class);
     }
 
-    // Relación muchos a muchos si un producto puede tener múltiples tags
+    public function colors(): BelongsToMany
+    {
+        return $this->belongsToMany(Color::class);
+    }
+
+    public function getImagesAttribute($value)
+    {
+        return is_string($value) ? json_decode($value, true) : $value;
+    }
+
     // public function tags(): BelongsToMany
     // {
     //     return $this->belongsToMany(Tag::class);

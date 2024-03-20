@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Products;
 
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,46 +17,71 @@ class CreateProduct extends Component
     public $description;
     public $price;
     public $stock;
-    public $enable = false;
+    public $status = false;
     public $category_id;
-    public $image;
+    public $images = [];
+    public $selectedColors = [];
 
     protected $rules = [
         'name' => 'required|min:3|max:70',
-        'description' => 'required|min:5|max:255',
+        'description' => 'required|min:5|max:2000',
         'price' => 'required|integer|digits_between: 4,10',
         'stock' => 'required|integer|min:1|max:100',
         'category_id' => 'required|integer',
-        'enable' => 'nullable',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'status' => 'nullable',
+        'selectedColors' => 'required',
+        'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ];
+
+    protected $validationAttributes = [
+        'price' => 'precio',
+        'name' => 'nombre',
+        'description' => 'descripción',
+        'stock' => 'existencias',
+        'category_id' => 'categorías',
+        'status' => 'estado',
+        'images' => 'imagenes',
+        'selectedColors' => 'colores disponibles',
     ];
 
     public function save()
     {
         $this->validate();
-        $this->createProduct();
+        $product = $this->createProduct();
+        $this->saveSelectedColors($product->id); 
         $this->resetForm();
         $this->emitTo('products.products-list', 'render');
-        $this->emit('alert', 'Se ha creado el producto'); // esto es con el modal de sweetAlert
+        $this->emit('alert', trans('products.flash_message.successfully_created')); // esto es con el modal de sweetAlert
     }
 
+    public function saveSelectedColors($productId)
+    {
+        $product = Product::find($productId);
+        $product->colors()->sync($this->selectedColors);
+    }
+    
     protected function createProduct()
     {
-        $imageName = time().'-'.$this->image->getClientOriginalName();
-
+        $imagePaths = [];
+        
+        foreach ($this->images as $image) {
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $imagePaths[] = $image->storeAs('images/products', $imageName, 'public');
+        }
+        
         $productData = [
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
             'stock' => $this->stock,
-            'enable' => $this->enable,
+            'status' => $this->status,
             'category_id' => $this->category_id,
-            'image' => $this->image->storeAs('images/products', $imageName),
+            'images' => json_encode($imagePaths), // Almacenar las rutas de las imágenes como JSON
         ];
-
+        
         return Product::create($productData);
     }
-
+    
     private function resetForm()
     {
         $this->reset([
@@ -64,16 +90,22 @@ class CreateProduct extends Component
             'description',
             'price',
             'stock',
-            'enable',
+            'status',
             'category_id',
-            'image', // no se está reseteando la imagen
+            'images',
+            'selectedColors',
         ]);
     }
-
+    
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+    
     public function render()
     {
         $categories = Category::all();
-
-        return view('livewire.products.create-product', compact('categories'));
+        $colors = Color::all();
+        return view('livewire.products.create-product', compact('categories', 'colors'));
     }
 }

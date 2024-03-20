@@ -8,9 +8,9 @@
         @endif
 
         {{-- search bar --}}
-        <div class="flex items-center p-3 lg:p-6 gap-2">
-            <x-input class="flex-1" type="text" wire:model="search" placeholder="busca un producto" />
-            {{-- @livewire('products.create-product') --}}
+        <div class="flex items-center p-3 lg:p-6 gap-3">
+            <x-input class="flex-1" type="text" wire:model="search"
+                placeholder="{{ trans('products.placeholders.search') }}" />
             <livewire:products.create-product />
         </div>
 
@@ -22,23 +22,26 @@
                         <tr>
                             <th scope="col" class="px-7 pb-3 text-left text-xs font-medium text-gray-500 uppercase">
                                 <div class="flex items-center justify-between">
-                                    imagen
+                                    {{ trans('products.image') }}
                                 </div>
                             </th>
                             <th wire:click="order('name')" scope="col"
                                 class="w-1/3 px-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        nombre y descripcion
+                                        {{ trans('products.name') . '-' . trans('products.description') }}
                                     </div>
                                     <x-sort-icon :field="'name'" :sort="$sort" :direction="$direction" />
                                 </div>
+                            </th>
+                            <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                {{ trans('products.available_colors') }}
                             </th>
                             <th wire:click="order('price')" scope="col"
                                 class="px-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        price
+                                        {{ trans('products.price') }}
                                     </div>
                                     <x-sort-icon :field="'price'" :sort="$sort" :direction="$direction" />
                                 </div>
@@ -46,18 +49,18 @@
                             <th wire:click="order('stock')" scope="col"
                                 class="px-3 text-left text-xs font-medium text-gray-500 cursor-pointer uppercase">
                                 <div class="flex items-center justify-between">
-                                    Existencias
+                                    {{ trans('products.stock') }}
                                     <x-sort-icon :field="'stock'" :sort="$sort" :direction="$direction" />
                                 </div>
                             </th>
                             <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
-                                estado
+                                {{ trans('products.category') }}
                             </th>
                             <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
-                                categoria
+                                {{ trans('products.status') }}
                             </th>
                             <th scope="col" class="px-3 text-left text-xs font-medium text-gray-500 uppercase">
-                                Acciones
+                                {{ trans('products.actions') }}
                             </th>
                         </tr>
                     </thead>
@@ -65,9 +68,14 @@
                         @foreach ($products as $product)
                             <tr class="even:bg-gray-100 odd:bg-white text-gray-700">
                                 <td class="py-2 lg:py-4 pl-3 md:p-3 lg:px-6">
-                                    <img class="w-16 h-16 rounded-full object-cover"
-                                        src="{{ asset('storage/' . $product->image) }}"
-                                        alt="{{ 'image of ' . $product->name }}">
+                                    @if ($product->images)
+                                        <img class="w-16 h-16 rounded-full object-cover"
+                                            src="{{ asset('storage/' . $product->images[0]) }}"
+                                            alt="{{ 'image of ' . $product->name }}">
+                                    @else
+                                        <img class="w-16 h-16 rounded-full object-cover"
+                                            src="{{ asset('storage/images/product_image.png') }}" alt="">
+                                    @endif
                                 </td>
                                 <td class="p-3 font-bold">
                                     <div>
@@ -77,25 +85,41 @@
                                         {{ $product->description }}
                                     </div>
                                 </td>
+                                <td class="p-3">
+                                    @foreach ($product->colors as $color )
+                                    <div class="flex items-center gap-1 text-xs">
+                                        <div class="w-3 h-3 rounded-full" style="background-color: {{ $color->hex_code }}">
+                                        </div>
+                                        <p>{{ $color->name }}</p>
+
+                                    </div>
+                                    @endforeach
+                                </td>
                                 <td class="px-3 font-bold">
                                     ${{ $product->price }}
                                 </td>
                                 <td class="px-3">
                                     {{ $product->stock }}
                                 </td>
+
                                 <td class="px-3 py-2">
-                                    {{ $product->enable ? 'Activo' : 'Inactivo' }}
+                                    {{ trans('categories.' . $product->category->name) }}
                                 </td>
+
                                 <td class="px-3 py-2">
-                                    {{ $product->category->name }}
+                                    @if ($product->status)
+                                        <span
+                                            class="text-green-500 p-2 rounded-lg">{{ trans('products.enabled') }}</span>
+                                    @else
+                                        <span
+                                            class="text-red-700 p-2 rounded-lg">{{ trans('products.disabled') }}</span>
+                                    @endif
                                 </td>
                                 <td class="p-3 lg:pr-6">
                                     <section class="flex items-center">
                                         @livewire('products.edit-product', ['product' => $product], key($product->id))
-                                        <article class="p-3 ml-3 bg-gray-200 rounded-lg cursor-pointer"
-                                            wire:click="$emit('destroy', {{ $product->id }})">
-                                            <x-delete-icon />
-                                        </article>
+                                        <x-button-action action="delete"
+                                            wire:click="$emit('destroy', {{ $product->id }})" />
                                     </section>
                                 </td>
                             </tr>
@@ -105,7 +129,7 @@
             </section>
         @else
             <div class="flex text-2xl items-center justify-center px-3 pb-6">
-                No se encontró ningún usuario, intenta con otra palabra.
+                {{ trans('products.failed_search') }}
             </div>
         @endif
         @if ($products->hasPages())
@@ -121,19 +145,19 @@
                 const productId = event.detail.productId;
 
                 Swal.fire({
-                    title: "¿Deseas eliminar este producto?",
-                    text: "Esta acción no se puede revertir",
+                    title: "{{ trans('products.flash_message.delete_question') }}",
+                    text: "{{ trans('flashMessages.delete_alert') }}",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Sí, eliminar"
+                    confirmButtonText: "{{ trans('flashMessages.delete_confirm') }}"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         Livewire.emit('deleteProduct', productId);
                         Swal.fire({
-                            title: "Confirmado",
-                            text: "El producto ha sido eliminado correctamente",
+                            title: "{{ trans('flashMessages.delete_confirmed') }}",
+                            text: "{{ trans('products.flash_message.successfully_deleted') }}",
                             icon: "success"
                         });
                     }
