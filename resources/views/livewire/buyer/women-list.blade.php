@@ -20,7 +20,7 @@
                                 <img class="object-cover w-full h-full"
                                     src="{{ asset('storage/images/product_image.png') }}" alt="">
                             @endif
-                        </a>
+                        </a > 
                     </div>
                     <section class="mb-10 mt-2">
                         <div class="flex flex-col items-center justify-center">
