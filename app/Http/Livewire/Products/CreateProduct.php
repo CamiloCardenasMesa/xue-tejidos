@@ -48,7 +48,7 @@ class CreateProduct extends Component
     {
         $this->validate();
         $product = $this->createProduct();
-        $this->saveSelectedColors($product->id); 
+        $this->saveSelectedColors($product->id);
         $this->resetForm();
         $this->emitTo('products.products-list', 'render');
         $this->emit('alert', trans('products.flash_message.successfully_created')); // esto es con el modal de sweetAlert
@@ -59,16 +59,16 @@ class CreateProduct extends Component
         $product = Product::find($productId);
         $product->colors()->sync($this->selectedColors);
     }
-    
+
     protected function createProduct()
     {
         $imagePaths = [];
-        
+
         foreach ($this->images as $image) {
             $imageName = time() . '-' . $image->getClientOriginalName();
             $imagePaths[] = $image->storeAs('images/products', $imageName, 'public');
         }
-        
+
         $productData = [
             'name' => $this->name,
             'description' => $this->description,
@@ -78,10 +78,10 @@ class CreateProduct extends Component
             'category_id' => $this->category_id,
             'images' => json_encode($imagePaths), // Almacenar las rutas de las imágenes como JSON
         ];
-        
+
         return Product::create($productData);
     }
-    
+
     private function resetForm()
     {
         $this->reset([
@@ -96,12 +96,12 @@ class CreateProduct extends Component
             'selectedColors',
         ]);
     }
-    
+
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
     }
-    
+
     public function render()
     {
         $categories = Category::all();

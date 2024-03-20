@@ -14,10 +14,9 @@ class ProductShow extends Component
     {
         $this->open = !$this->open;
     }
-    
+
     public function render()
     {
         return view('livewire.buyer.product-show')->layout('layouts.guest');
     }
-
 }

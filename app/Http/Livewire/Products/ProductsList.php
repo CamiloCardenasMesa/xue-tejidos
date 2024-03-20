@@ -26,7 +26,7 @@ class ProductsList extends Component
 
     public function render()
     {
-        $products = Product::with('category')->where('name', 'like', '%'.$this->search.'%')
+        $products = Product::with('category')->where('name', 'like', '%' . $this->search . '%')
             ->orderBy($this->sort, $this->direction)
             ->paginate(10);
 

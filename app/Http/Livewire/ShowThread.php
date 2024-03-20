@@ -17,16 +17,16 @@ class ShowThread extends Component
                 ->replies()
                 ->whereNull('reply_id')
                 ->with('user', 'replies.user', 'replies.replies')
-                ->get()
+                ->get(),
         ]);
     }
 
     public function postReply()
     {
         $this->validate([
-            'body' => 'required'
+            'body' => 'required',
         ]);
-        
+
         auth()->user()->replies()->create([
             'thread_id' => $this->thread->id,
             'body' => $this->body,

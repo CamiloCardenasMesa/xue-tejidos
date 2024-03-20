@@ -19,8 +19,8 @@ class EditUser extends Component
     {
         return [
             'user.name' => 'required|string|min:3|max:255',
-            'user.email' => 'required|email|unique:users,email,'.$this->user->id,
-            'user.phone' => 'nullable|string|min:7|max:30|unique:users,phone,'.$this->user->id,
+            'user.email' => 'required|email|unique:users,email,' . $this->user->id,
+            'user.phone' => 'nullable|string|min:7|max:30|unique:users,phone,' . $this->user->id,
             'user.birthday' => 'nullable|date_format:Y-m-d',
             'user.city' => 'nullable|string|min:3|max:50',
             'user.country' => 'nullable|string|min:3|max:56',

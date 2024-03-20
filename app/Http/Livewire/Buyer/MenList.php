@@ -15,7 +15,7 @@ class MenList extends Component
             ->orderByDesc('id');
 
         if ($this->search) {
-            $query->where('name', 'like', '%'.$this->search.'%');
+            $query->where('name', 'like', '%' . $this->search . '%');
         }
 
         $products = $query->get();
