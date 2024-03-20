@@ -24,9 +24,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', config('jetstream.auth_sessi
         return view('admin.design');
     })->name('design');
 
-    Route::get('/forum', \App\Http\Livewire\ShowThreads::class)->name('forum');
+    Route::get('/forum', App\Http\Livewire\ShowThreads::class)->name('forum');
 
-    Route::get('/thread/{thread}', \App\Http\Livewire\ShowThread::class)->name('thread');
+    Route::get('/thread/{thread}', App\Http\Livewire\ShowThread::class)->name('thread');
 
     Route::resource('threads', ThreadController::class)->except([
         'show', 'index', 'destroy',
@@ -42,5 +42,5 @@ Route::prefix('category')->group(function () {
         return view('buyer.men');
     })->name('men');
 
-    Route::get('product/{product}', \App\Http\Livewire\buyer\ProductShow::class)->name('product.show');
+    Route::get('product/{product}', App\Http\Livewire\buyer\ProductShow::class)->name('product.show');
 });

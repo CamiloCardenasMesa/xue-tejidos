@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory; 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,17 +12,17 @@ class ProductFactory extends Factory
     {
         $productImage1 = storage_path('app/public/images/product_image2.jpg');
         $productImage2 = storage_path('app/public/images/product_image.jpg');
-        
+
         $directory = 'images/products';
 
         if ($productImage1) {
             $path1 = Storage::disk('public')->putFile($directory, new File($productImage1));
-            $images[] = $path1; 
+            $images[] = $path1;
         }
 
         if ($productImage2) {
             $path2 = Storage::disk('public')->putFile($directory, new File($productImage2));
-            $images[] = $path2; 
+            $images[] = $path2;
         }
 
         return [

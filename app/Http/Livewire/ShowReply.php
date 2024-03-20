@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Reply;
-use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\Component;
 
 class ShowReply extends Component
 {
@@ -34,12 +34,12 @@ class ShowReply extends Component
     {
         if (!is_null($this->reply->reply_id)) {
             return;
-        } // revisa el nivel de jerarquía de la respuesta 
+        } // revisa el nivel de jerarquía de la respuesta
 
         $this->validate([
-            'body' => 'required'
+            'body' => 'required',
         ]); // valida que el campo no esté vacío
-        
+
         // crear
         auth()->user()->replies()->create([
             'reply_id' => $this->reply->id,
@@ -58,9 +58,9 @@ class ShowReply extends Component
         $this->authorize('update', $this->reply);
 
         $this->validate([
-            'body' => 'required'
+            'body' => 'required',
         ]);
-        
+
         // update
         $this->reply->update(['body' => $this->body]);
 

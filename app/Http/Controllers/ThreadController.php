@@ -11,7 +11,7 @@ class ThreadController extends Controller
     public function edit(Thread $thread)
     {
         $this->authorize('update', $thread);
-        
+
         $forumCategories = ForumCategory::get();
 
         return view('thread.edit', compact('forumCategories', 'thread'));
@@ -51,5 +51,4 @@ class ThreadController extends Controller
 
         return redirect()->route('thread', $thread);
     }
-
 }

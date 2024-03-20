@@ -27,9 +27,9 @@
                             <h1 class="font-medium">{{ $product->name }}</h1>
                             <p>$ {{ $product->price }}</p>
                         </div>
-                        <div class="flex items-center mt-2 justify-center gap-1">
+                        <div class="flex items-center mt-2 justify-center gap-2">
                             @foreach ($product->colors as $color)
-                                <div class="w-3 h-3" style="background-color:  {{ $color->hex_code }} ">
+                                <div class="w-3 h-3 rounded-full" style="background-color:  {{ $color->hex_code }} ">
                                 </div>
                             @endforeach
                         </div>

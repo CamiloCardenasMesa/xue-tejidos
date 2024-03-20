@@ -20,8 +20,8 @@ class PostsList extends Component
 
     public function render()
     {
-        $posts = Post::where('title', 'like', '%'.$this->search.'%')
-                    ->orWhere('content', 'like', '%'.$this->search.'%')
+        $posts = Post::where('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('content', 'like', '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
                     ->paginate(10);
 
