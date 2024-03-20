@@ -54,7 +54,7 @@ class ProductsList extends Component
 
     public function deleteProduct(Product $product)
     {
-        Storage::delete($product->image);
+        Storage::delete($product->images);
         $product->delete();
     }
 
