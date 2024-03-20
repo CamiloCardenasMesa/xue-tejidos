@@ -25,10 +25,10 @@ class UsersList extends Component
 
     public function render()
     {
-        $users = User::where('name', 'like', '%'.$this->search.'%')
-        ->orWhere('email', 'like', '%'.$this->search.'%')
-        ->orWhere('phone', 'like', '%'.$this->search.'%')
-        ->orWhere('city', 'like', '%'.$this->search.'%')
+        $users = User::where('name', 'like', '%' . $this->search . '%')
+        ->orWhere('email', 'like', '%' . $this->search . '%')
+        ->orWhere('phone', 'like', '%' . $this->search . '%')
+        ->orWhere('city', 'like', '%' . $this->search . '%')
         ->orderBy($this->sort, $this->direction)
         ->paginate(10);
 

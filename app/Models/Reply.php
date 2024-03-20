@@ -28,6 +28,6 @@ class Reply extends Model
 
     public function replies()
     {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(self::class);
     }
 }

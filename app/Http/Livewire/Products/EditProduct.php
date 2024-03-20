@@ -74,12 +74,12 @@ class EditProduct extends Component
         $this->confirmingImageDeletion = true;
         $this->imageToDeleteIndex = $index;
     }
-    
+
     public function confirmImageDeletion()
     {
         // Obtener la ruta de la imagen a eliminar
         $imagePath = $this->product->images[$this->imageToDeleteIndex];
-        
+
         // Eliminar la imagen del sistema de archivos
         Storage::disk('public')->delete($imagePath);
 
@@ -88,14 +88,14 @@ class EditProduct extends Component
 
         // Asignar el nuevo array de imágenes al producto
         $this->product->images = $images;
-    
+
         // Guardar los cambios en la base de datos
         $this->product->save();
-    
+
         // Reiniciar las variables de estado
         $this->confirmingImageDeletion = false;
         $this->imageToDeleteIndex = null;
-    }  
+    }
 
     public function saveSelectedColors()
     {
